@@ -26,11 +26,25 @@ def import_invoice_items_csv
   ActiveRecord::Base.connection.reset_pk_sequence!(:invoice_items)
   CSV.foreach('db/import_csv/invoice_items.csv', :headers=> true) do |row|
     InvoiceItem.create(item_id: row['item_id'],
-                    invoice_id: row['invoice_id'],
-                    quantity: row['quantity'],
-                    unit_price: row['unit_price'],
+                      invoice_id: row['invoice_id'],
+                      quantity: row['quantity'],
+                      unit_price: row['unit_price'],
+                      created_at: row['created_at'],
+                      updated_at: row['updated_at'])
+  end
+  puts 'Invoice Item CSV import completed!'
+end
+
+def import_invoices_csv
+  puts 'Starting Invoice CSV file import...'
+  Invoice.destroy_all
+  ActiveRecord::Base.connection.reset_pk_sequence!(:invoices)
+  CSV.foreach('db/import_csv/invoices.csv', :headers=> true) do |row|
+    Invoice.create(customer_id: row['customer_id'],
+                    merchant_id: row['merchant_id'],
+                    status: row['status'],
                     created_at: row['created_at'],
                     updated_at: row['updated_at'])
   end
-  puts 'Invoice Item CSV import completed!'
+  puts 'Invoice CSV import completed!'
 end

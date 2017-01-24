@@ -11,5 +11,6 @@ namespace :db do
   task :import_csvs => :environment do
     import_customers_csv
     import_invoice_items_csv
+    import_invoices_csv
   end
 end
