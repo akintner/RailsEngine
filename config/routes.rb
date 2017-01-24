@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       namespace :invoices do
         get "/find" => "find#index"
       end
+      namespace :invoice_items do
+        get "/find" => "find#index"
+      end
       resources :merchants, only: [:index, :show]
       resources :customers, only: [:index, :show]
       resources :transactions, only: [:index, :show]
