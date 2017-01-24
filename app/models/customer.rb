@@ -1,13 +1,4 @@
 class Customer < ApplicationRecord
-
-  # def to_param(input)
-  #   [input.paramaterize]
-  # end
-
-  # def self.find_by_params(input)
-  #   find(input)
-  # end
-
   def self.find_by_params(param)
     if param["first_name"]
       find_by(first_name: param["first_name"])
