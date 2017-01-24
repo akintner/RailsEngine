@@ -35,6 +35,7 @@ RSpec.describe 'Items API' do
     expect(item).to be_a(Hash)
     expect(item).to have_key('id')
     expect(item['id']).to be_a(Integer)
+    expect(item['id']).to eq(test_items.first['id'])
     expect(item).to have_key('name')
     expect(item['name']).to be_a(String)
     expect(item).to have_key('description')
