@@ -35,6 +35,7 @@ RSpec.describe 'invoice items API' do
     expect(invoice_item).to be_a(Hash)
     expect(invoice_item).to have_key('id')
     expect(invoice_item['id']).to be_a(Integer)
+    expect(invoice_item['id']).to eq(test_invoice_items.first['id'])
     expect(invoice_item).to have_key('item_id')
     expect(invoice_item['item_id']).to be_a(Integer)
     expect(invoice_item).to have_key('invoice_id')
