@@ -1,9 +1,26 @@
 class Customer < ApplicationRecord
 
-  def to_param
-  end
+  # def to_param(input)
+  #   [input.paramaterize]
+  # end
 
-  def self.find_by_param(input)
-    find_by_name(input)
+  # def self.find_by_params(input)
+  #   find(input)
+  # end
+
+  def self.find_by_params(param)
+    if param["first_name"]
+      find_by(first_name: param["first_name"])
+    elsif param["id"]
+      find_by(id: param["id"].to_i)
+    elsif param["last_name"]
+      find_by(last_name: param["last_name"])
+    elsif param["created_at"]
+      find_by(created_at: param["created_at"])
+    elsif param["updated_at"]
+      find_by(updated_at: param["updated_at"])
+    else
+      nil
+    end     
   end
 end

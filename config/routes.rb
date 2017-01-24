@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-
-  scope do
-    get "/api/v1/customers/find", to: "customersfind#show"
-  end
   
   namespace :api, defaults: {format: :json} do 
     namespace :v1 do 
+      # get "/api/v1/customers/find" => "customersfind#index"
+      namespace :customers do
+        get "/find" => "find#index"
+      end
       resources :merchants, only: [:index, :show]
       resources :customers, only: [:index, :show]
       resources :transactions, only: [:index, :show]
