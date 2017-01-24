@@ -16,7 +16,7 @@ RSpec.describe "Transactions API" do
     expect(transaction).to have_key("result")
     expect(transaction).to have_key("created_at")
     expect(transaction["result"]).to be_a(String)
-    expect(transaction["credit_card_number"]).to be_a(Integer)
+    expect(transaction["credit_card_number"]).to be_a(String)
   end
 
    it "can find all transactions" do 
@@ -33,6 +33,6 @@ RSpec.describe "Transactions API" do
     expect(transaction).to have_key("result")
     expect(transaction).to have_key("created_at")
     expect(transaction["result"]).to be_a(String)
-    expect(transaction["credit_card_number"]).to be_a(Integer)
+    expect(transaction["credit_card_number"]).to be_a(String)
   end
 end
