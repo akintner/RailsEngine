@@ -48,3 +48,18 @@ def import_invoices_csv
   end
   puts 'Invoice CSV import completed!'
 end
+
+def import_items_csv
+  puts 'Starting Item CSV file import...'
+  Item.destroy_all
+  ActiveRecord::Base.connection.reset_pk_sequence!(:items)
+  CSV.foreach('db/import_csv/items.csv', :headers=> true) do |row|
+    Item.create(name: row['name'],
+                    description: row['description'],
+                    unit_price: row['unit_price'],
+                    merchant_id: row['merchant_id'],
+                    created_at: row['created_at'],
+                    updated_at: row['updated_at'])
+  end
+  puts 'Item CSV import completed!'
+end
