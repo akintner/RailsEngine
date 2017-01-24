@@ -9,6 +9,7 @@ namespace :db do
   require_relative "db/seeds"
   desc "Import CSV to table"
   task :import_csvs => :environment do
-    import_customer_csv
+    import_customers_csv
+    import_invoice_items_csv
   end
 end
