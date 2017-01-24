@@ -5,3 +5,10 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
+namespace :db do
+  require_relative "db/seeds"
+  desc "Import CSV to table"
+  task :import_csvs => :environment do
+    import_customer_csv
+  end
+end
