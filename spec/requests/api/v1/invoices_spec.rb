@@ -12,9 +12,13 @@ RSpec.describe 'Invoices API' do
     expect(invoices.count).to eq(3)
     expect(invoice).to be_a(Hash)
     expect(invoice).to have_key('id')
+    expect(invoice['id']).to be_a(Integer)
     expect(invoice).to have_key('customer_id')
+    expect(invoice['customer_id']).to be_a(Integer)
     expect(invoice).to have_key('merchant_id')
+    expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
+    expect(invoice['status']).to be_a(String)
     expect(invoice).to have_key('created_at')
     expect(invoice).to have_key('updated_at')
   end
