@@ -1,5 +1,10 @@
 # README
 
+This implementation is based on project description:  
+http://backend.turing.io/module3/projects/rails_engine
+
+Still to be updated:
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
