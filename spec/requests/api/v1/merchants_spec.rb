@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Merchants" do
+RSpec.describe "Merchants API" do
   it "can find all merchants" do 
     create_list(:merchant, 3)
     get "/api/v1/merchants" 
