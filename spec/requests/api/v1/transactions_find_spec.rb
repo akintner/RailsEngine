@@ -28,7 +28,7 @@ RSpec.describe "Transactions API Find Controller" do
     expect(transaction["result"]).to be_a(String)
   end
 
-  it "can find a transaction by result" do 
+  it "can find a transaction by credit_card_number" do 
     create_list(:transaction, 3)
     get '/api/v1/transactions/find?credit_card_number=4654405418249632'
 
