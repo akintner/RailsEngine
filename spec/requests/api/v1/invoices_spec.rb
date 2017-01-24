@@ -6,9 +6,9 @@ RSpec.describe 'Invoices API' do
     get '/api/v1/invoices'
 
     invoices = JSON.parse(response.body)
-    invoice = Invoices.first
+    invoice = invoices.first
 
-    expect(response).to be_sucess
+    expect(response).to be_success
     expect(invoices.count).to eq(3)
     expect(invoice).to be_a(Hash)
     expect(invoice).to have_key('id')
