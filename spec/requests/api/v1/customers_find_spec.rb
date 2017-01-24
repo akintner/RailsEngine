@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Customers API Find Controller" do
   it "can find all customers by search params" do 
     create_list(:customer, 3)
-    get '/api/v1/customers/find?prof'
+    get '/api/v1/customers/find?first_name=prof'
 
     customer = JSON.parse(respone.body)
 
