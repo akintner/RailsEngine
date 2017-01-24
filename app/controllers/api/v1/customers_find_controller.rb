@@ -1,6 +1,6 @@
-class Api::V1::CustomersFindController < ApplicationController
+class CustomersfindController < ApplicationController
 
   def show
-    render json: Customer.find(params[:id])
+    render json: Customer.find_by_param(input)
   end
 end
