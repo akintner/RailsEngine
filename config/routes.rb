@@ -9,4 +9,8 @@ Rails.application.routes.draw do
       resources :invoice_items, only: [:index, :show]
     end
   end
+
+  scope do
+    get "/api/v1/customers/find", to: "customersfind#show"
+  end
 end
