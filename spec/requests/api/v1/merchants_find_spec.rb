@@ -25,17 +25,4 @@ RSpec.describe "Merchants API Find Controller" do
     expect(merchant).to have_key("name")
     expect(merchant["name"]).to be_a(String)
   end
-
-  it "can find a merchant by created_at" do 
-    create_list(:merchant, 3)
-    get "/api/v1/merchants/find?created_at=#{Date.now}"
-
-    merchant = JSON.parse(response.body)
-
-    expect(response).to be_success
-    expect(merchant).to have_key("id")
-    expect(merchant).to have_key("name")
-    expect(merchant).to have_key("created_at")
-    expect(merchant["name"]).to be_a(String)
-  end
 end
