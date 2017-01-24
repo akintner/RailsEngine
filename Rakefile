@@ -14,5 +14,6 @@ namespace :db do
     import_invoices_csv
     import_items_csv
     import_merchants_csv
+    import_transactions_csv
   end
 end

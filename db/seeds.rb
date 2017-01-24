@@ -75,3 +75,16 @@ def import_merchants_csv
   end
   puts 'Merchant CSV import completed!'
 end
+
+def import_transactions_csv
+  puts 'Starting Transaction CSV file import...'
+  Transaction.destroy_all
+  ActiveRecord::Base.connection.reset_pk_sequence!(:transactions)
+  CSV.foreach('db/import_csv/transactions.csv', :headers=> true) do |row|
+    Transaction.create(credit_card_number: row['credit_card_number'],
+                    result: row['result'],
+                    created_at: row['created_at'],
+                    updated_at: row['updated_at'])
+  end
+  puts 'Transaction CSV import completed!'
+end
