@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       end
       namespace :invoice_items do
         get "/find" => "find#index"
+        get "/find_all" => "find_all#index"
       end
       namespace :items do
         get "/find" => "find#index"
