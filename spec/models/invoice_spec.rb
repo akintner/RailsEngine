@@ -24,19 +24,18 @@ RSpec.describe Invoice, type: :model do
 
     it 'can find the first match based on any attribute' do
       test_invoices = create_list(:invoice, 3)
-      test_params = {"customer_id" => "1"}
+      test_params = {"customer_id" => test_invoices.first.customer.id.to_s}
 
       find_invoice = Invoice.find_by_params(test_params)
-
       expect(find_invoice.id).to eq(test_invoices.first.id)
     end
 
     it 'can find all matches based on any attribute' do
       test_invoices = create_list(:invoice, 3)
-      test_invoices[0].update(customer_id: 1)
-      test_invoices[1].update(customer_id: 2)
-      test_invoices[2].update(customer_id: 1)
-      test_params = {"customer_id" => "1"}
+      test_invoices[0].update(status: "test")
+      test_invoices[1].update(status: "failed")
+      test_invoices[2].update(status: "test")
+      test_params = {"status" => "test"}
 
       find_invoices = Invoice.where_by_params(test_params)
 
