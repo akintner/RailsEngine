@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
     it {should respond_to :invoices}
   end
 
-  describe 'validation' do
+  describe 'validations' do
     it 'can create Item with all attributes, including timestamps from CSVs' do
       test_item= Item.create(name: 'itemname',
                                       description: 'this item...',
