@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       namespace :merchants do
         get "/find" => "find#index"
         get "/find_all" => "find_all#index"
+        get "/random" => "random#index"
       end
       namespace :transactions do 
         get "/find" => "find#index"

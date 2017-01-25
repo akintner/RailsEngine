@@ -15,8 +15,8 @@ class Merchant < ApplicationRecord
     end     
   end
 
-   def self.where_by_params(param)
-     if param["name"]
+  def self.where_by_params(param)
+    if param["name"]
       where(name: param["name"])
     elsif param["id"]
       where(id: param["id"].to_i)
@@ -27,6 +27,10 @@ class Merchant < ApplicationRecord
     else
       nil
     end 
+  end
+
+  def self.random
+    all.shuffle.first
   end
 
 end
