@@ -39,4 +39,8 @@ class InvoiceItem < ApplicationRecord
     end     
   end
 
+  def self.random
+    all.shuffle.first
+  end
+
 end
