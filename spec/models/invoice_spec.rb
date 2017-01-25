@@ -38,7 +38,7 @@ RSpec.describe Invoice, type: :model do
       expect(find_invoices.count).to eq(2)
     end
 
-    it 'can return a random invoice item' do
+    it 'can return a random invoice' do
       create_list(:invoice, 100)
 
       random_invoice1 = Invoice.random
