@@ -35,7 +35,7 @@ RSpec.describe Customer, type: :model do
       expect(find_customers.count).to eq(2)
     end
 
-    xit 'can return a random customer' do
+    it 'can return a random customer' do
       create_list(:customer, 100)
 
       random_customer1 = Customer.random
