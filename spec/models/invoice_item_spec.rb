@@ -27,7 +27,7 @@ RSpec.describe InvoiceItem, type: :model do
 
     it 'can find the first match based on any attribute' do
       test_invoice_items = create_list(:invoice_item, 3)
-      test_params = {"unit_price" => "1"}
+      test_params = {"unit_price" => "0.01"}
 
       find_invoice_item = InvoiceItem.find_by_params(test_params)
 
@@ -36,10 +36,10 @@ RSpec.describe InvoiceItem, type: :model do
 
     it 'can find all matches based on any attribute' do
       test_invoice_items = create_list(:invoice_item, 3)
-      test_invoice_items[0].update(unit_price: 1)
-      test_invoice_items[1].update(unit_price: 2)
-      test_invoice_items[2].update(unit_price: 1)
-      test_params = {"unit_price" => "1"}
+      test_invoice_items[0].update(unit_price: 101)
+      test_invoice_items[1].update(unit_price: 200)
+      test_invoice_items[2].update(unit_price: 101)
+      test_params = {"unit_price" => "1.01"}
 
       find_invoice_items = InvoiceItem.where_by_params(test_params)
 

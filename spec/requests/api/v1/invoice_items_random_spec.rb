@@ -18,7 +18,7 @@ RSpec.describe 'Invoice items API Random Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end

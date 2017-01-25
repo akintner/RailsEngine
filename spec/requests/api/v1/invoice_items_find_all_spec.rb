@@ -20,7 +20,7 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end
@@ -47,7 +47,7 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end
@@ -74,7 +74,7 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end
@@ -101,17 +101,17 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by unit price' do
     test_invoice_items = create_list(:invoice_item, 3)
-    test_invoice_items[0].update(unit_price: 1)
-    test_invoice_items[1].update(unit_price: 2)
-    test_invoice_items[2].update(unit_price: 1)
-    get "/api/v1/invoice_items/find_all?unit_price=#{test_invoice_items.first['unit_price']}"
+    test_invoice_items[0].update(unit_price: 101)
+    test_invoice_items[1].update(unit_price: 200)
+    test_invoice_items[2].update(unit_price: 101)
+    get "/api/v1/invoice_items/find_all?unit_price=1.01"
 
     invoice_items = JSON.parse(response.body)
     invoice_item = invoice_items.first
@@ -128,7 +128,7 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end
@@ -152,7 +152,7 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end
@@ -176,7 +176,7 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item).to have_key('quantity')
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
-    expect(invoice_item['unit_price']).to be_a(Integer)
+    expect(invoice_item['unit_price']).to be_a(String)
     expect(invoice_item).to have_key('created_at')
     expect(invoice_item).to have_key('updated_at')
   end

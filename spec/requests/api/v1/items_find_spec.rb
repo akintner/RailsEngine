@@ -17,7 +17,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
@@ -39,7 +39,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
@@ -61,7 +61,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
@@ -70,7 +70,7 @@ RSpec.describe 'Items API Find Controller' do
 
   it 'can find an item by unit_price' do
     test_items = create_list(:item, 3)
-    get "/api/v1/items/find?unit_price=#{test_items.first['unit_price']}"
+    get "/api/v1/items/find?unit_price=0.01"
 
     item = JSON.parse(response.body)
 
@@ -83,7 +83,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
@@ -105,7 +105,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
@@ -127,7 +127,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
@@ -149,7 +149,7 @@ RSpec.describe 'Items API Find Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Integer)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
