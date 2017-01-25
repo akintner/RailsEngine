@@ -18,6 +18,13 @@ Rails.application.routes.draw do
         get "/find" => "find#index"
         get "/find_all" => "find_all#index"
         get "/random" => "random#index"
+        resources only: [:show] do
+          get "/transactions" => "transactions_relationships#index"
+          get "/invoice_items" => "invoice_items_relationships#index"
+          get "/items" => "items_relationships#index"
+          get "/customer" => "customer_relationship#index"
+          get "/merchant" => "merchant_relationship#index"
+        end
       end
       namespace :invoice_items do
         get "/find" => "find#index"
