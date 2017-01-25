@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
       namespace :items do
         get "/find" => "find#index"
+        get "/find_all" => "find_all#index"
       end
       resources :merchants, only: [:index, :show]
       resources :customers, only: [:index, :show]
