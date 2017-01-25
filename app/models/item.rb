@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   def self.find_by_params(param)
     if param["id"]
       find_by(id: param["id"].to_i)
@@ -18,4 +19,25 @@ class Item < ApplicationRecord
       nil
     end     
   end
+
+  def self.where_by_params(param)
+    if param["id"]
+      where(id: param["id"].to_i)
+    elsif param["name"]
+      where(name: param["name"])
+    elsif param["description"]
+      where(description: param["description"])
+    elsif param["unit_price"]
+      where(unit_price: param["unit_price"])
+    elsif param["merchant_id"]
+      where(merchant_id: param["merchant_id"])
+    elsif param["created_at"]
+      where(created_at: param["created_at"])
+    elsif param["updated_at"]
+      where(updated_at: param["updated_at"])
+    else
+      nil
+    end     
+  end
+
 end
