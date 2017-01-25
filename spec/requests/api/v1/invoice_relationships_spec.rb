@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Invoices Relationships Controller' do
+RSpec.describe 'Invoices Relationships' do
   it 'can find all transactions for invoice' do
     invoice = create(:invoice)
     transactions = create_list(:transaction, 4)
