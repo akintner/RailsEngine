@@ -9,9 +9,9 @@ RSpec.describe "Transactions API Random Controller" do
 
     expect(response).to be_success
     expect(transaction).to have_key("id")
+    expect(transaction["id"]).to be_a(Integer)
     expect(transaction).to have_key("result")
     expect(transaction).to have_key("credit_card_number")
     expect(transaction["result"]).to be_a(String)
   end
-
 end

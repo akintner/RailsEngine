@@ -9,8 +9,8 @@ RSpec.describe "Merchants API Random Controller" do
 
     expect(response).to be_success
     expect(merchant).to have_key("id")
+    expect(merchant["id"]).to be_a(Integer)
     expect(merchant).to have_key("name")
     expect(merchant["name"]).to be_a(String)
   end
-
 end
