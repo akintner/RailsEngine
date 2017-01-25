@@ -9,10 +9,7 @@ RSpec.describe Transaction, type: :model do
 
   describe 'validations' do
     it 'can create Transaction with all attributes, including timestamps from CSVs' do
-      test_transaction = Transaction.create(credit_card_number: '4654405418249632',
-                                      result: 'success',
-                                      created_at: '2017-01-24 00:10:51',
-                                      updated_at: '2017-01-24 00:10:51')
+      test_transaction = create(:transaction)
 
       expect(test_transaction).to be_valid
       expect(Transaction.count).to eq(1)
