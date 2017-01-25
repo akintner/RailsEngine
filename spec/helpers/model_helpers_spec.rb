@@ -41,4 +41,26 @@ RSpec.describe 'Model utility methods' do
       expect(dollars).to eq(2.53)
     end
   end
+
+  describe 'Dollar to penny conversion' do
+    it 'can convert zero dollar to pennies' do
+      pennies = @tester.dollar_to_penny('0')
+
+      expect(pennies).to be_a(Integer)
+      expect(pennies).to eq(0)
+    end
+    it 'can convert any non-zero dollars without decimals to pennies => 100' do
+      pennies = @tester.dollar_to_penny('1')
+
+      expect(pennies).to be_a(Integer)
+      expect(pennies).to eq(100)
+    end
+    it 'can convert any non-zero dollars to pennies => 253' do
+      pennies = @tester.dollar_to_penny('2.53')
+
+      expect(pennies).to be_a(Integer)
+      expect(pennies).to eq(253)
+    end
+  end
+
 end
