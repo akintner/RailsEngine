@@ -1,7 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Merchant, type: :model do
-  describe 'validation' do
+  describe 'associations' do
+    it {should respond_to(:items)}
+    it {should respond_to(:invoices)}
+    it {should respond_to(:customers)}
+    it {should respond_to(:transactions)}
+    it {should respond_to(:invoice_items)}
+  end
+
+  describe 'validations' do
     it 'can create Merchant with all attributes, including timestamps from CSVs' do
       test_merchant = Merchant.create(name: 'Merchant Name',
                                       created_at: '2017-01-24 00:10:51',
@@ -12,6 +20,7 @@ RSpec.describe Merchant, type: :model do
       expect(Merchant.first).to eq(test_merchant)
     end
   end
+  
   describe 'methods' do
     it 'can find the first match based on any attribute' do
       test_merchants = create_list(:merchant, 3)

@@ -1,5 +1,9 @@
 class Transaction < ApplicationRecord
-  # belongs_to :invoice
+
+  belongs_to :invoice
+
+  has_many :invoice_items, through: :invoices
+
   def self.find_by_params(param)
     if param["result"]
       find_by(result: param["result"])

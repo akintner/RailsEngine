@@ -26,9 +26,9 @@ RSpec.describe 'Invoices API Find_All Controller' do
 
   it 'can find an invoice by customer id' do
     test_invoices = create_list(:invoice, 3)
-    test_invoices[0].update(customer_id: 1)
-    test_invoices[1].update(customer_id: 2)
-    test_invoices[2].update(customer_id: 1)
+    test_invoices[0].update(customer: Customer.first)
+    test_invoices[1].update(customer: Customer.last)
+    test_invoices[2].update(customer: Customer.first)
     get "/api/v1/invoices/find_all?customer_id=#{test_invoices.first['customer_id']}"
 
     invoices = JSON.parse(response.body)
@@ -51,9 +51,9 @@ RSpec.describe 'Invoices API Find_All Controller' do
 
   it 'can find an invoice by merchant id' do
     test_invoices = create_list(:invoice, 3)
-    test_invoices[0].update(merchant_id: 1)
-    test_invoices[1].update(merchant_id: 2)
-    test_invoices[2].update(merchant_id: 1)
+    test_invoices[0].update(merchant: Merchant.first)
+    test_invoices[1].update(merchant: Merchant.last)
+    test_invoices[2].update(merchant: Merchant.first)
     get "/api/v1/invoices/find_all?merchant_id=#{test_invoices.first['merchant_id']}"
 
     invoices = JSON.parse(response.body)

@@ -1,4 +1,10 @@
 class Customer < ApplicationRecord
+
+  has_many :invoices
+  has_many :transactions, through: :invoices
+  has_many :invoice_items, through: :invoices
+  has_many :merchants, through: :invoices
+
   def self.find_by_params(param)
     if param["first_name"]
       find_by(first_name: param["first_name"])
