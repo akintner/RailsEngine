@@ -43,7 +43,7 @@ RSpec.describe Merchant, type: :model do
       expect(find_merchants.count).to eq(2)
     end
 
-    xit 'can return a random merchant' do
+    it 'can return a random merchant' do
       create_list(:merchant, 100)
 
       random_merchant1 = Merchant.random
