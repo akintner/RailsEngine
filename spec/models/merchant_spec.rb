@@ -2,8 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Merchant, type: :model do
   describe 'associations' do
+    it {should respond_to(:items)}
+    it {should respond_to(:invoices)}
+    it {should respond_to(:customers)}
+    it {should respond_to(:transactions)}
+    it {should respond_to(:invoice_items)}
   end
-  
+
   describe 'validations' do
     it 'can create Merchant with all attributes, including timestamps from CSVs' do
       test_merchant = Merchant.create(name: 'Merchant Name',
