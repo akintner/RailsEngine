@@ -2,14 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
 
-  describe "associations" do
+  describe 'associations' do
     it {should respond_to :customer}
     it {should respond_to :merchant}
     it {should respond_to :invoice_items}
     it {should respond_to :items}
+    it {should respond_to :transactions}
   end
 
-  describe 'validation' do
+  describe 'validations' do
     it 'can create Invoice with all attributes, including timestamps from CSVs' do
       test_invoice= Invoice.create(customer_id: 1,
                                       merchant_id: 2,
