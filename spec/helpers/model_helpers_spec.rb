@@ -8,6 +8,19 @@ RSpec.describe 'Model utility methods' do
     @tester = PennyToDollarTest.new
   end
 
+  describe 'Determine if input has decimal' do
+    it 'can return FALSE if no decimal point in input' do
+      test_input = '12'
+
+      expect(@tester.has_decimal?(test_input)).to be_falsy
+    end
+    it 'can return TRUE if no decimal point in input' do
+      test_input = '12.1'
+
+      expect(@tester.has_decimal?(test_input)).to be_truthy
+    end
+  end
+
   describe 'Penny to dollar amount conversion' do
     it 'can convert zero penny to dollar' do
       dollars = @tester.penny_to_dollar(0)
