@@ -6,11 +6,12 @@ RSpec.describe "Merchants API Find_All Controller" do
     get '/api/v1/merchants/find_all?name=Hogwarts Express Railways'
 
     merchants = JSON.parse(response.body)
+    merchant = merchants.first
 
     expect(response).to be_success
-    expect(merchants).to have_key("id")
-    expect(merchants).to have_key("name")
-    expect(merchants["name"]).to eq("Hogwarts Express Railways")
+    expect(merchant).to have_key("id")
+    expect(merchant).to have_key("name")
+    expect(merchant["name"]).to eq("Hogwarts Express Railways")
   end
 
 end
