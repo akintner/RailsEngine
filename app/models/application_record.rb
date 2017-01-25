@@ -1,4 +1,4 @@
 class ApplicationRecord < ActiveRecord::Base
+  extend ModelHelpers
   self.abstract_class = true
-  include ModelHelpers
 end

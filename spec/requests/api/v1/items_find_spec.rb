@@ -70,7 +70,7 @@ RSpec.describe 'Items API Find Controller' do
 
   it 'can find an item by unit_price' do
     test_items = create_list(:item, 3)
-    get "/api/v1/items/find?unit_price=#{test_items.first['unit_price']}"
+    get "/api/v1/items/find?unit_price=0.01"
 
     item = JSON.parse(response.body)
 

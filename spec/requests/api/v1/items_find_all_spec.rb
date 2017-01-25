@@ -82,10 +82,10 @@ RSpec.describe 'Items API Find_All Controller' do
 
   it 'can find an item by unit price' do
     test_items = create_list(:item, 3)
-    test_items[0].update(unit_price: 1)
-    test_items[1].update(unit_price: 2)
-    test_items[2].update(unit_price: 1)
-    get "/api/v1/items/find_all?unit_price=#{test_items.first['unit_price']}"
+    test_items[0].update(unit_price: 101)
+    test_items[1].update(unit_price: 200)
+    test_items[2].update(unit_price: 101)
+    get "/api/v1/items/find_all?unit_price=1.01"
 
     items = JSON.parse(response.body)
     item = items.first

@@ -91,7 +91,7 @@ RSpec.describe 'Invoice items API Find Controller' do
 
   it 'can find an invoice item by unit_price' do
     test_invoice_items = create_list(:invoice_item, 3)
-    get "/api/v1/invoice_items/find?unit_price=#{test_invoice_items.first['unit_price']}"
+    get "/api/v1/invoice_items/find?unit_price=0.01"
 
     invoice_item = JSON.parse(response.body)
 
