@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  describe 'validation' do
+  describe 'associations' do
+    it {should respond_to :invoices}
+    it {should respond_to :transactions}
+    it {should respond_to :invoice_items}
+    it {should respond_to :merchants}
+  end
+
+  describe 'validations' do
     it 'can create Customer with all attributes, including timestamps from CSVs' do
       test_customer = Customer.create(first_name: 'FirstName',
                                       last_name: 'LastName',
@@ -13,6 +20,7 @@ RSpec.describe Customer, type: :model do
       expect(Customer.first).to eq(test_customer)
     end
   end
+  
   describe 'methods' do
     it 'can find the first match based on any attribute' do
       test_customers = create_list(:customer, 3)
