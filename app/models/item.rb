@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
 
+  def unit_price_dollar
+    penny_to_dollar(unit_price)
+  end
+
   def self.find_by_params(param)
     if param["id"]
       find_by(id: param["id"].to_i)
