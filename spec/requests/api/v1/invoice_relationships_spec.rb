@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Invoices Relationships' do
+RSpec.describe 'Invoice Relationships' do
   it 'can find all transactions for invoice' do
     invoice = create(:invoice)
     transactions = create_list(:transaction, 4)
@@ -56,7 +56,5 @@ RSpec.describe 'Invoices Relationships' do
     expect(response).to be_success
     expect(merchant["id"]).to eq(invoice.merchant_id)
   end
-
-endnd
 
 end
