@@ -2,9 +2,17 @@ Rails.application.routes.draw do
   
   namespace :api, defaults: {format: :json} do 
     namespace :v1 do 
-      # get "/api/v1/customers/find" => "customersfind#index"
       namespace :customers do
         get "/find" => "find#index"
+        get "/find_all" => "find_all#index"
+      end
+      namespace :merchants do
+        get "/find" => "find#index"
+        get "/find_all" => "find_all#index"
+      end
+      namespace :transactions do 
+        get "/find" => "find#index"
+        get "/find_all" => "find_all#index"
       end
       namespace :invoices do
         get "/find" => "find#index"
