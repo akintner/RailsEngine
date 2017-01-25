@@ -7,4 +7,9 @@ class Api::V1::CustomersController < ApplicationController
   def show
     render json: Customer.find(params[:id])
   end
+
+  private
+    def customer_params
+      params.permit(:first_name, :last_name)
+    end
 end
