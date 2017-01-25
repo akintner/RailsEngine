@@ -6,6 +6,7 @@ RSpec.describe 'invoice items API' do
     get '/api/v1/invoice_items'
 
     invoice_items = JSON.parse(response.body)
+
     invoice_item = invoice_items.first
 
     expect(response).to be_success

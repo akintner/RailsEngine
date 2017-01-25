@@ -7,9 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
+def empty_tables
+  puts 'Start emptying all database tables. Be patient, might take a while...'
+  InvoiceItem.destroy_all
+  Transaction.destroy_all
+  Invoice.destroy_all
+  Item.destroy_all
+  Merchant.destroy_all
+  Customer.destroy_all
+  puts 'Finished emptying all database tables!'
+end
+
 def import_customers_csv
   puts 'Starting Customer CSV file import...'
-  Customer.destroy_all
   ActiveRecord::Base.connection.reset_pk_sequence!(:customers)
   CSV.foreach('db/import_csv/customers.csv', :headers=> true) do |row|
     Customer.create(first_name: row['first_name'],
@@ -22,7 +32,6 @@ end
 
 def import_invoice_items_csv
   puts 'Starting Invoice Item CSV file import...'
-  InvoiceItem.destroy_all
   ActiveRecord::Base.connection.reset_pk_sequence!(:invoice_items)
   CSV.foreach('db/import_csv/invoice_items.csv', :headers=> true) do |row|
     InvoiceItem.create(item_id: row['item_id'],
@@ -37,7 +46,6 @@ end
 
 def import_invoices_csv
   puts 'Starting Invoice CSV file import...'
-  Invoice.destroy_all
   ActiveRecord::Base.connection.reset_pk_sequence!(:invoices)
   CSV.foreach('db/import_csv/invoices.csv', :headers=> true) do |row|
     Invoice.create(customer_id: row['customer_id'],
@@ -51,7 +59,6 @@ end
 
 def import_items_csv
   puts 'Starting Item CSV file import...'
-  Item.destroy_all
   ActiveRecord::Base.connection.reset_pk_sequence!(:items)
   CSV.foreach('db/import_csv/items.csv', :headers=> true) do |row|
     Item.create(name: row['name'],
@@ -66,7 +73,6 @@ end
 
 def import_merchants_csv
   puts 'Starting Merchant CSV file import...'
-  Merchant.destroy_all
   ActiveRecord::Base.connection.reset_pk_sequence!(:merchants)
   CSV.foreach('db/import_csv/merchants.csv', :headers=> true) do |row|
     Merchant.create(name: row['name'],
@@ -78,7 +84,6 @@ end
 
 def import_transactions_csv
   puts 'Starting Transaction CSV file import...'
-  Transaction.destroy_all
   ActiveRecord::Base.connection.reset_pk_sequence!(:transactions)
   CSV.foreach('db/import_csv/transactions.csv', :headers=> true) do |row|
     Transaction.create(credit_card_number: row['credit_card_number'],

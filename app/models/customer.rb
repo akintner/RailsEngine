@@ -22,7 +22,7 @@ class Customer < ApplicationRecord
   end
 
   def self.where_by_params(param)
-     if param["first_name"]
+    if param["first_name"]
       where(first_name: param["first_name"])
     elsif param["id"]
       where(id: param["id"].to_i)
@@ -37,4 +37,7 @@ class Customer < ApplicationRecord
     end 
   end
    
+  def self.random
+    all.shuffle.first
+  end
 end
