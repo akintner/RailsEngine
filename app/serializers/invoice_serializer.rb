@@ -3,5 +3,4 @@ class InvoiceSerializer < ActiveModel::Serializer
 
   belongs_to :merchant 
   belongs_to :customer
-
 end
