@@ -109,9 +109,9 @@ RSpec.describe 'Items API Find_All Controller' do
 
   it 'can find an item by merchant id' do
     test_items = create_list(:item, 3)
-    test_items[0].update(merchant_id: 1)
-    test_items[1].update(merchant_id: 2)
-    test_items[2].update(merchant_id: 1)
+    test_items[0].update(merchant: Merchant.first)
+    test_items[1].update(merchant: Merchant.last)
+    test_items[2].update(merchant: Merchant.first)
     get "/api/v1/items/find_all?merchant_id=#{test_items.first['merchant_id']}"
 
     items = JSON.parse(response.body)

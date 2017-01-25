@@ -1,4 +1,10 @@
 class InvoiceItem < ApplicationRecord
+  belongs_to :item
+  belongs_to :invoice
+
+  has_many :customers, through: :invoices
+  has_many :merchants, through: :invoices
+
   def self.find_by_params(param)
     if param["id"]
       find_by(id: param["id"].to_i)
@@ -42,5 +48,4 @@ class InvoiceItem < ApplicationRecord
   def self.random
     all.shuffle.first
   end
-
 end

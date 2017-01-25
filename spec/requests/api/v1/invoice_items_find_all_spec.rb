@@ -27,9 +27,9 @@ RSpec.describe 'Invoice items API Find_All Controller' do
 
   it 'can find all invoice item by item id' do
     test_invoice_items = create_list(:invoice_item, 3)
-    test_invoice_items[0].update(item_id: 1)
-    test_invoice_items[1].update(item_id: 2)
-    test_invoice_items[2].update(item_id: 1)
+    test_invoice_items[0].update(item: Item.first)
+    test_invoice_items[1].update(item: Item.last)
+    test_invoice_items[2].update(item: Item.first)
     get "/api/v1/invoice_items/find_all?item_id=#{test_invoice_items.first['item_id']}"
 
     invoice_items = JSON.parse(response.body)
@@ -54,9 +54,9 @@ RSpec.describe 'Invoice items API Find_All Controller' do
 
   it 'can find all invoice item by invoice id' do
     test_invoice_items = create_list(:invoice_item, 3)
-    test_invoice_items[0].update(invoice_id: 1)
-    test_invoice_items[1].update(invoice_id: 2)
-    test_invoice_items[2].update(invoice_id: 1)
+    test_invoice_items[0].update(invoice: Invoice.first)
+    test_invoice_items[1].update(invoice: Invoice.last)
+    test_invoice_items[2].update(invoice: Invoice.first)
     get "/api/v1/invoice_items/find_all?invoice_id=#{test_invoice_items.first['invoice_id']}"
 
     invoice_items = JSON.parse(response.body)
