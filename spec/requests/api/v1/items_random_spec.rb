@@ -16,7 +16,7 @@ RSpec.describe 'Items API Random Controller' do
     expect(item).to have_key('description')
     expect(item['description']).to be_a(String)
     expect(item).to have_key('unit_price')
-    expect(item['unit_price']).to be_a(Float)
+    expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
     expect(item).to have_key('created_at')
