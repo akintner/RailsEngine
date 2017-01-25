@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       namespace :items do
         get "/find" => "find#index"
         get "/find_all" => "find_all#index"
+        get "/random" => "random#index"
       end
       resources :merchants, only: [:index, :show]
       resources :customers, only: [:index, :show]
