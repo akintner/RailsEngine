@@ -12,11 +12,7 @@ RSpec.describe Invoice, type: :model do
 
   describe 'validations' do
     it 'can create Invoice with all attributes, including timestamps from CSVs' do
-      test_invoice= Invoice.create(customer_id: 1,
-                                      merchant_id: 2,
-                                      status: 'teststatus',
-                                      created_at: '2017-01-24 00:10:51',
-                                      updated_at: '2017-01-24 00:10:51')
+      test_invoice = create(:invoice)
 
       expect(test_invoice).to be_valid
       expect(Invoice.count).to eq(1)
