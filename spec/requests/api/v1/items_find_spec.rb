@@ -95,7 +95,7 @@ RSpec.describe 'Items API Find Controller' do
     get "/api/v1/items/find?merchant_id=#{test_items.first['merchant_id']}"
 
     item = JSON.parse(response.body)
-
+    
     expect(response).to be_success
     expect(item).to be_a(Hash)
     expect(item).to have_key('id')
