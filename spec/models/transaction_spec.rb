@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  describe 'validation' do
+
+  describe 'associations' do
+    it {should respond_to(:invoice)}
+    it {should respond_to(:invoice_items)}
+  end
+
+  describe 'validations' do
     it 'can create Transaction with all attributes, including timestamps from CSVs' do
       test_transaction = Transaction.create(credit_card_number: '4654405418249632',
                                       result: 'success',

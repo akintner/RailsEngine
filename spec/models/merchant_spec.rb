@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Merchant, type: :model do
-  describe 'validation' do
+  describe 'associations' do
+  end
+  
+  describe 'validations' do
     it 'can create Merchant with all attributes, including timestamps from CSVs' do
       test_merchant = Merchant.create(name: 'Merchant Name',
                                       created_at: '2017-01-24 00:10:51',
