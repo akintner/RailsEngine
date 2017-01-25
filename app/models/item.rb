@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
 
+  def unit_price_dollar
+    penny_to_dollar(unit_price)
+  end
+
   def self.find_by_params(param)
     if param["id"]
       find_by(id: param["id"].to_i)
@@ -8,7 +12,7 @@ class Item < ApplicationRecord
     elsif param["description"]
       find_by(description: param["description"])
     elsif param["unit_price"]
-      find_by(unit_price: param["unit_price"])
+      find_by(unit_price: dollar_to_penny(param["unit_price"]))
     elsif param["merchant_id"]
       find_by(merchant_id: param["merchant_id"])
     elsif param["created_at"]
@@ -28,7 +32,7 @@ class Item < ApplicationRecord
     elsif param["description"]
       where(description: param["description"])
     elsif param["unit_price"]
-      where(unit_price: param["unit_price"])
+      where(unit_price: dollar_to_penny(param["unit_price"]))
     elsif param["merchant_id"]
       where(merchant_id: param["merchant_id"])
     elsif param["created_at"]
