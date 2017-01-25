@@ -35,7 +35,7 @@ RSpec.describe Transaction, type: :model do
       expect(find_transactions.count).to eq(2)
     end
 
-    xit 'can return a random transaction' do
+    it 'can return a random transaction' do
       create_list(:transaction, 100)
 
       random_transaction1 = Transaction.random

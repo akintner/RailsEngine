@@ -16,7 +16,7 @@ class Transaction < ApplicationRecord
     end     
   end
 
-   def self.where_by_params(param)
+  def self.where_by_params(param)
     if param["result"]
       where(result: param["result"])
     elsif param["id"]
@@ -31,4 +31,9 @@ class Transaction < ApplicationRecord
       nil
     end     
   end
+
+  def self.random
+    all.shuffle.first
+  end
+
 end
