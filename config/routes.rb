@@ -35,6 +35,10 @@ Rails.application.routes.draw do
         get "/find" => "find#index"
         get "/find_all" => "find_all#index"
         get "/random" => "random#index"
+        resources only: [:show] do 
+          get "/invoice_items" => "invoice_items_relationships#index"
+          get "/merchant" => "merchant_relationship#index"
+        end
       end
       resources :merchants, only: [:index, :show]
       resources :customers, only: [:index, :show]
