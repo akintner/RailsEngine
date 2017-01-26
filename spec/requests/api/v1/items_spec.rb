@@ -21,8 +21,6 @@ RSpec.describe 'Items API' do
     expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
-    expect(item).to have_key('created_at')
-    expect(item).to have_key('updated_at')
   end
 
   it 'can find a specific item' do
@@ -44,7 +42,5 @@ RSpec.describe 'Items API' do
     expect(item['unit_price']).to be_a(String)
     expect(item).to have_key('merchant_id')
     expect(item['merchant_id']).to be_a(Integer)
-    expect(item).to have_key('created_at')
-    expect(item).to have_key('updated_at')
   end
 end

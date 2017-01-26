@@ -14,7 +14,6 @@ RSpec.describe "Customers API" do
     expect(customer).to have_key("id")
     expect(customer).to have_key("first_name")
     expect(customer).to have_key("last_name")
-    expect(customer).to have_key("created_at")
     expect(customer["last_name"]).to be_a(String)
     expect(customer["id"]).to be_a(Integer)
   end
@@ -31,7 +30,6 @@ RSpec.describe "Customers API" do
     expect(customer["id"]).to eq(test_customers.first["id"])
     expect(customer).to have_key("first_name")
     expect(customer).to have_key("last_name")
-    expect(customer).to have_key("created_at")
     expect(customer["last_name"]).to be_a(String)
     expect(customer["id"]).to be_a(Integer)
   end

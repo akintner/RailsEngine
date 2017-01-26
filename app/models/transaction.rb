@@ -11,6 +11,8 @@ class Transaction < ApplicationRecord
       find_by(result: param["result"])
     elsif param["id"]
       find_by(id: param["id"].to_i)
+    elsif param["invoice_id"]
+      find_by(invoice_id: param["invoice_id"].to_i)
     elsif param["credit_card_number"]
       find_by(credit_card_number: param["credit_card_number"])
     elsif param["created_at"]
@@ -27,6 +29,8 @@ class Transaction < ApplicationRecord
       where(result: param["result"])
     elsif param["id"]
       where(id: param["id"].to_i)
+    elsif param["invoice_id"]
+      where(invoice_id: param["invoice_id"].to_i)
     elsif param["credit_card_number"]
       where(credit_card_number: param["credit_card_number"])
     elsif param["created_at"]

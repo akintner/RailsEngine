@@ -6,6 +6,43 @@ RSpec.describe Customer, type: :model do
     it {should respond_to :transactions}
     it {should respond_to :invoice_items}
     it {should respond_to :merchants}
+    describe 'invoices' do
+      it 'can return only invoices associated this customer' do
+        customers = create_list(:customer, 2)
+        invoices = create_list(:invoice, 5)
+        test_customer = customers.first
+        test_invoice1 = invoices[0]
+        test_invoice2 = invoices[2]
+        test_customer.invoices << [test_invoice1, test_invoice2]
+
+        test_customer_invoices = test_customer.invoices
+
+        expect(test_customer_invoices.count).to eq(2)
+        expect(test_customer_invoices.include?(test_invoice1)).to be_truthy
+        expect(test_customer_invoices.include?(test_invoice2)).to be_truthy
+      end
+    end
+    describe 'transactions' do
+      it 'can return only transactions associated this customer' do
+        customers = create_list(:customer, 2)
+        invoices = create_list(:invoice, 5)
+        test_customer = customers.first
+        test_invoice1 = invoices[0]
+        test_invoice2 = invoices[2]
+        test_customer.invoices << [test_invoice1, test_invoice2]
+        transactions = create_list(:transaction, 5)
+        test_transaction1 = transactions[0]
+        test_transaction2 = transactions[2]
+        test_invoice1.transactions << test_transaction1
+        test_invoice2.transactions << test_transaction2
+
+        test_customer_transactions = test_customer.transactions
+
+        expect(test_customer_transactions.count).to eq(2)
+        expect(test_customer_transactions.include?(test_transaction1)).to be_truthy
+        expect(test_customer_transactions.include?(test_transaction2)).to be_truthy
+      end
+    end
   end
 
   describe 'validations' do
