@@ -25,7 +25,7 @@ RSpec.describe 'Merchants Business Intelligence' do
     expect(result["revenue"]).to eq(revenue)
   end
 
-  it "will return revenue only for successful transactions" do
+  it "will return total revenue only for successful transactions" do
     merchant = create(:merchant)
     item = create(:item)
     invoice = create(:invoice, merchant: merchant)
@@ -45,7 +45,7 @@ RSpec.describe 'Merchants Business Intelligence' do
     expect(result["revenue"]).to eq(revenue)
   end
 
-  it 'can find top item sold' do
+  it 'can find total revenue for specified date' do
     #returns the total revenue for that merchant for a specific invoice date x
     merchant = create(:merchant)
     get "/api/v1/merchants/#{merchant.id}/revenue?date=x"
