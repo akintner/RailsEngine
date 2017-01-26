@@ -90,7 +90,7 @@ RSpec.describe 'Merchants Business Intelligence' do
     get "/api/v1/merchants/most_revenue?quantity=2"
 
     merchants = JSON.parse(response.body)
-byebug
+
     expect(response).to be_success
   end
 

@@ -95,6 +95,13 @@ RSpec.describe Merchant, type: :model do
   describe 'Business Intelligence' do
     before do
       @test_invoices = create_list(:invoice, 3)
+      @test_transactions = create_list(:transaction, 3)
+      @test_transactions[0].invoice = @test_invoices[0]
+      @test_transactions[0].save
+      @test_transactions[1].invoice = @test_invoices[1]
+      @test_transactions[1].save
+      @test_transactions[2].invoice = @test_invoices[2]
+      @test_transactions[2].save
       @merchant_top1 = Merchant.first
       @merchant_top2 = Merchant.last
       @merchant_top1.invoices << [@test_invoices[0], @test_invoices[1]]
@@ -106,13 +113,14 @@ RSpec.describe Merchant, type: :model do
     end
     it 'can return the top 1 merchants by revenue' do
       top_merchants = Merchant.top_x_by_revenue(1)
-      
-      expect(top_merchants.count).to eq(1)
+
+      expect(top_merchants.first.id).to eq(@merchant_top1.id)
     end
-    xit 'can return the top 2 merchants by revenue' do
+    it 'can return the top 2 merchants by revenue' do
       top_merchants = Merchant.top_x_by_revenue(2)
 
-      expect(top_merchants.count).to eq(2)
+      expect(top_merchants.first.id).to eq(@merchant_top1.id)
+      expect(top_merchants.last.id).to eq(@merchant_top2.id)
     end
   end
 end

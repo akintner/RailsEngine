@@ -46,7 +46,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.top_x_by_revenue(top_x)
-    select(:id, :name, "SUM(invoice_items.quantity * invoice_items.unit_price) as total_revenue").joins(invoices: [:invoice_items, :transactions]).merge(Transaction.successful).group(:id).order("total_revenue DESC").limit(top_x)
+    select(:id, :name, "SUM(invoice_items.quantity * invoice_items.unit_price) as total_revenue").joins(invoices: [:invoice_items, :transactions]).merge(Transaction.successful).group(:id).order("total_revenue DESC").limit(top_x.to_i)
     
     # joins(:invoices,[:invoice_items, :transactions])
     # .merge(Transaction.successful)
