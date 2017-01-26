@@ -4,9 +4,9 @@ class InvoiceSerializer < ActiveModel::Serializer
   belongs_to :merchant 
   belongs_to :customer
 
-  has_many :transactions
-  has_many :invoice_items
-  has_many :items, through: :invoice_items
+  # has_many :transactions
+  # has_many :invoice_items
+  # has_many :items, through: :invoice_items
 
   def format_transactions
     # object.transactions.each do |transaction|
