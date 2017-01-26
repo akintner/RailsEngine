@@ -21,8 +21,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by item id' do
@@ -48,8 +46,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by invoice id' do
@@ -75,8 +71,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by quantity' do
@@ -102,8 +96,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by unit price' do
@@ -129,8 +121,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by created at date' do
@@ -153,8 +143,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
   it 'can find all invoice item by updated at date' do
@@ -177,8 +165,6 @@ RSpec.describe 'Invoice items API Find_All Controller' do
     expect(invoice_item['quantity']).to be_a(Integer)
     expect(invoice_item).to have_key('unit_price')
     expect(invoice_item['unit_price']).to be_a(String)
-    expect(invoice_item).to have_key('created_at')
-    expect(invoice_item).to have_key('updated_at')
   end
 
 end
