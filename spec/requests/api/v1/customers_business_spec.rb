@@ -24,9 +24,9 @@ RSpec.describe 'Customers Business Intelligence' do
 
     get "/api/v1/customers/#{customer.id}/favorite_merchant"
 
-    data = JSON.parse(response.body)
+    result = JSON.parse(response.body)
 
     expect(response).to be_success
-    expect(data["id"]).to eq(merchant_1.id)
+    expect(result["id"]).to eq(merchant_1.id)
   end
 end
