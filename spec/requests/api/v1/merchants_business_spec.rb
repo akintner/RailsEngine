@@ -30,8 +30,8 @@ RSpec.describe 'Merchants Business Intelligence' do
     item = create(:item)
     invoice = create(:invoice, merchant: merchant)
     invoice_2 = create(:invoice, merchant: merchant)
-    invoice_item_1 = create(:invoice_item, item: item, invoice: invoice, quantity: 10, unit_price: 50000)
-    invoice_item_2 = create(:invoice_item, item: item, invoice: invoice_2, quantity: 5, unit_price: 10000)
+    invoice_item_1 = create(:invoice_item, item: item, invoice: invoice, quantity: 10, unit_price: 35000)
+    invoice_item_2 = create(:invoice_item, item: item, invoice: invoice_2, quantity: 5, unit_price: 40000)
     transaction = create(:transaction, invoice: invoice, result: "success")
     transaction = create(:transaction, invoice: invoice_2, result: "failure")
 
@@ -47,21 +47,44 @@ RSpec.describe 'Merchants Business Intelligence' do
 
   it 'can find total revenue for specified date' do
     #returns the total revenue for that merchant for a specific invoice date x
+    date = "2016-09-06 12:00:35"
     merchant = create(:merchant)
-    get "/api/v1/merchants/#{merchant.id}/revenue?date=x"
+    item = create(:item)
+    invoice = create(:invoice, merchant: merchant)
+    invoice_2 = create(:invoice, merchant: merchant)
+    invoice_item_1 = create(:invoice_item, item: item, invoice: invoice, quantity: 10, unit_price: 50000)
+    invoice_item_2 = create(:invoice_item, item: item, invoice: invoice_2, quantity: 5, unit_price: 10000)
+    transaction = create(:transaction, invoice: invoice, result: "success")
+    transaction = create(:transaction, invoice: invoice_2, result: "failure")
 
-    merchant = JSON.parse(response.body)
+    revenue = ((invoice_item_1.quantity * invoice_item_1.unit_price)/ 100.00).to_s
+
+    get "/api/v1/merchants/#{merchant.id}/revenue?date=#{date}"
+
+    result = JSON.parse(response.body)
 
     expect(response).to be_success
+    expect(result["revenue"]).to eq(revenue)
   end
 
   it 'can find top merchants ranked by items sold' do
     #returns the top x merchants ranked by total number of items sold
-    merchant = create(:merchant)
-    get "/api/v1/merchants/most_items?quantity=x"
+    merchant1 = create(:merchant)
+    merchant2 = create(:merchant)
+    item1 = create(:item)
+    item2 = create(:item)
+    invoice = create(:invoice, merchant: merchant1)
+    invoice_2 = create(:invoice, merchant: merchant2)
+    invoice_items_1 = create(:invoice_item, item: item1, invoice: invoice, quantity: 3, unit_price: 99000)
+    invoice_items_2 = create(:invoice_item, item: item2, invoice: invoice_2, quantity: 17, unit_price: 1000)
+    transaction = create(:transaction, invoice: invoice, result: "success")
+    transaction = create(:transaction, invoice: invoice_2, result: "success")
+
+    get "/api/v1/merchants/most_items?quantity=1"
 
     merchant = JSON.parse(response.body)
 
     expect(response).to be_success
+    expect(merchant["name"]).to eq(1)
   end
 end
