@@ -80,11 +80,11 @@ RSpec.describe 'Merchants Business Intelligence' do
     transaction = create(:transaction, invoice: invoice, result: "success")
     transaction = create(:transaction, invoice: invoice_2, result: "success")
 
-    get "/api/v1/merchants/most_items?quantity=1"
+    get "/api/v1/merchants/most_items?quantity=2"
 
-    merchant = JSON.parse(response.body)
+    merchants = JSON.parse(response.body)
 
     expect(response).to be_success
-    expect(merchant["name"]).to eq(1)
+    expect(merchants.first["id"]).to eq(merchant2.id)
   end
 end
