@@ -43,11 +43,10 @@ class Customer < ApplicationRecord
 
   def favorite_merchant
     merchants
-    .select("merchants.*, count(invoices.id) as invoice_count")
+    .select("merchants.*, count(invoices.id) as id_count")
     .joins(invoices: :transactions)
-    .merge(Transaction.successful)
-    .group("merchants.id")
-    .order("invoice_count DESC")
+    .group("merchants.id")    
+    .order("id_count DESC")
     .first
   end
 end

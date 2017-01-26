@@ -12,10 +12,10 @@ RSpec.describe 'Merchants Business Intelligence' do
     transaction = create(:transaction, invoice: invoice, result: "success")
     transaction = create(:transaction, invoice: invoice_2, result: "success")
 
-    revenue_1 = (invoice_item_1.quantity * invoice_item_1.unit_price)
-    revenue_2 = (invoice_item_2.quantity * invoice_item_2.unit_price)
+    revenue_1 = (invoice_item_1.quantity * invoice_item_1.unit_price) 
+    revenue_2 = (invoice_item_2.quantity * invoice_item_2.unit_price) 
 
-    revenue = (revenue_1 + revenue_2).to_s
+    revenue = ((revenue_1 + revenue_2) /100.00).to_s
 
     get "/api/v1/merchants/#{merchant.id}/revenue"
 
