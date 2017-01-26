@@ -7,6 +7,23 @@ RSpec.describe Merchant, type: :model do
     it {should respond_to(:customers)}
     it {should respond_to(:transactions)}
     it {should respond_to(:invoice_items)}
+    describe 'invoices' do
+      it 'can return only invoices for this merchant' do
+        merchants = create_list(:merchant, 2)
+        invoices = create_list(:invoice, 5)
+        test_merchant = merchants.first
+        test_invoice1 = invoices[0]
+        test_invoice2 = invoices[2]
+        test_merchant.invoices << [test_invoice1, test_invoice2]
+
+        test_merchant_invoices = test_merchant.invoices
+
+byebug
+        expect(test_merchant_invoices.count).to eq(2)
+        expect(test_merchant_invoices.include?(test_invoice1)).to be_truthy
+        expect(test_merchant_invoices.include?(test_invoice2)).to be_truthy
+      end
+    end
   end
 
   describe 'validations' do
