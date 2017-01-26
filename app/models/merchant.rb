@@ -61,7 +61,7 @@ class Merchant < ApplicationRecord
     # .merge(Transaction.successful)
     # .sum("invoice_items.quantity * invoice_items.unit_price")
 
-    Invoice.where(created_at: 'date').joins(:invoice_items, :transactions).group(:id).sum('invoice_items.quantity * invoice_items.unit_price')
+    Invoice.where(created_at: date).joins(:invoice_items, :transactions).group(:id).sum('invoice_items.quantity * invoice_items.unit_price')
   end
 
   def find_invoices(date)
