@@ -35,7 +35,50 @@ class Merchant < ApplicationRecord
   end
 
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
+  end
+
+  def favorite_customer
+    customers
+    .select("customers.*, count(transactions.id) as transactions_count")
+    .joins(invoices: :transactions)
+    .merge(Transaction.successful)
+    .group("customers.id")
+    .order("transactions_count DESC")
+    .first
+  end
+
+  def total_revenue(date)
+    find_invoices(date)
+    .joins(:transactions, :invoice_items)
+    .merge(Transaction.successful)
+    .sum("invoice_items.quantity * invoice_items.unit_price")
+  end
+
+  def self.top_x_by_revenue(top_x)
+    select(:id, :name, "SUM(invoice_items.quantity * invoice_items.unit_price) as total_revenue")
+    .joins(invoices: [:invoice_items, :transactions])
+    .merge(Transaction.successful)
+    .group(:id)
+    .order("total_revenue DESC")
+    .limit(top_x.to_i)
+  end
+
+  def find_invoices(date)
+    if date
+      invoices.where(created_at: date)
+    else
+      invoices
+    end
+  end
+
+  def self.most_items_sold(quantity)
+    select("merchants.*, sum(invoice_items.quantity) as item_count")
+    .joins(invoices: [:invoice_items, :transactions])
+    .merge(Transaction.successful)
+    .order("item_count DESC")
+    .group("merchants.id")
+    .limit(quantity)
   end
 
 end

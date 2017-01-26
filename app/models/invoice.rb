@@ -1,5 +1,5 @@
 class Invoice < ApplicationRecord
-  default_scope { order('id ASC') }
+  # default_scope { order('id ASC') }
 
   belongs_to :merchant
   belongs_to :customer
@@ -45,6 +45,6 @@ class Invoice < ApplicationRecord
   end
 
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
   end
 end

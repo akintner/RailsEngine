@@ -43,8 +43,8 @@ RSpec.describe Item, type: :model do
     it 'can return a random item' do
       create_list(:item, 100)
 
-      random_item1 = Item.random
-      random_item2 = Item.random
+      random_item1 = Item.unscoped.random
+      random_item2 = Item.unscoped.random
 
       retry_count = 0
       while random_item1.id.eql?(random_item2.id) && retry_count < 5

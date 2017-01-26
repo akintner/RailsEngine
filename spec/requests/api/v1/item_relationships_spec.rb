@@ -15,7 +15,7 @@ RSpec.describe 'Items Relationships' do
 
   it 'can find merchant for item' do
     item = create(:item)
-    get "//api/v1/items/#{item.id}/merchant"
+    get "/api/v1/items/#{item.id}/merchant"
 
     merchant = JSON.parse(response.body)
 

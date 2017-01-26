@@ -38,6 +38,15 @@ class Customer < ApplicationRecord
   end
    
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
+  end
+
+  def favorite_merchant
+    merchants
+    .select("merchants.*, count(invoices.id) as id_count")
+    .joins([invoices: :transactions])
+    .group("merchants.id")    
+    .order("id_count DESC")
+    .first
   end
 end

@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
 
+  default_scope {order("id")}
+
   def unit_price_dollar
     penny_to_dollar(unit_price)
   end
@@ -48,8 +50,35 @@ class Item < ApplicationRecord
     end     
   end
 
+  def best_day
+    invoices
+    .joins(:invoice_items)
+    .group('invoices.id, invoices.created_at')
+    .order('sum(invoice_items.quantity) DESC')
+    .first
+    .created_at
+  end
+
+  def self.most_items(quantity)
+    unscoped
+    .joins([invoices: :transactions])
+    .merge(Transaction.successful)
+    .group('items.id')
+    .order('sum(invoice_items.quantity) DESC')
+    .limit(quantity)
+  end
+
+  def self.most_revenue(quantity)
+    unscoped
+    .joins(:invoice_items, invoices: [:transactions])
+    .merge(Transaction.successful)
+    .group("items.id")
+    .order("sum(invoice_items.quantity * invoice_items.unit_price) DESC")
+    .limit(quantity)
+  end
+
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
   end
 
 end
