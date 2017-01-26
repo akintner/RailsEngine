@@ -67,13 +67,13 @@ class Item < ApplicationRecord
     .limit(quantity)
   end
 
-  # def self.most_revenue(quantity)
-  #   joins(:invoice_items)
-  #   .merge(InvoiceItem.successful)
-  #   .group("items.id")
-  #   .order("sum(invoice_items.quantity * invoice_items.unit_price_in_cents) DESC")
-  #   .take(quantity)
-  # end
+  def self.most_revenue(quantity)
+    unscoped
+    .joins(:invoice_items)
+    .group("items.id")
+    .order("sum(invoice_items.quantity * invoice_items.unit_price) DESC")
+    .limit(quantity)
+  end
 
   def self.random
     order('RANDOM()').first

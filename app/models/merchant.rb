@@ -54,14 +54,6 @@ class Merchant < ApplicationRecord
     .limit(top_x.to_i)
   end
 
-  def total_revenue_by_date(date)
-    invoices
-    .where(created_at: date)
-    .joins(:transactions, :invoice_items)
-    .merge(Transaction.successful)
-    .sum("invoice_items.quantity * invoice_items.unit_price")
-  end
-
   def find_invoices(date)
     if date
       invoices.where(created_at: date)
