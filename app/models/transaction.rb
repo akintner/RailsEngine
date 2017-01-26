@@ -4,6 +4,8 @@ class Transaction < ApplicationRecord
 
   has_many :invoice_items, through: :invoices
 
+  scope :successful, -> { where(result: 'success') }
+
   def self.find_by_params(param)
     if param["result"]
       find_by(result: param["result"])

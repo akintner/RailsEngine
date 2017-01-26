@@ -40,4 +40,14 @@ class Customer < ApplicationRecord
   def self.random
     all.shuffle.first
   end
+
+  def favorite_merchant
+    merchants
+    .select("merchants.*, count(invoices.id) as invoice_count")
+    .joins(invoices: :transactions)
+    .merge(Transaction.successful)
+    .group("merchants.id")
+    .order("invoice_count DESC")
+    .first
+  end
 end
