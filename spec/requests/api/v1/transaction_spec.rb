@@ -14,7 +14,6 @@ RSpec.describe "Transactions API" do
     expect(transaction).to have_key("id")
     expect(transaction).to have_key("credit_card_number")
     expect(transaction).to have_key("result")
-    expect(transaction).to have_key("created_at")
     expect(transaction["result"]).to be_a(String)
     expect(transaction["credit_card_number"]).to be_a(String)
   end
@@ -31,7 +30,6 @@ RSpec.describe "Transactions API" do
     expect(transaction['id']).to eq(test_transactions.first['id'])
     expect(transaction).to have_key("credit_card_number")
     expect(transaction).to have_key("result")
-    expect(transaction).to have_key("created_at")
     expect(transaction["result"]).to be_a(String)
     expect(transaction["credit_card_number"]).to be_a(String)
   end
