@@ -53,14 +53,27 @@ class Item < ApplicationRecord
   def best_day
     invoices
     .joins(:invoice_items)
-    .group("invoices.id")
-    .order("sum(invoice_items.quantity) DESC, invoices.created_at DESC")
+    .group('invoices.id, invoices.created_at')
+    .order('sum(invoice_items.quantity) DESC')
     .first
     .created_at
   end
 
-  def most_items
+  def self.most_items(quantity)
+    joins([invoices: :transactions])
+    .merge(Transaction.successful)
+    .group('items.id')
+    .order('sum(invoice_items.quantity) DESC')
+    .limit(quantity)
   end
+
+  # def self.most_revenue(quantity)
+  #   joins(:invoice_items)
+  #   .merge(InvoiceItem.successful)
+  #   .group("items.id")
+  #   .order("sum(invoice_items.quantity * invoice_items.unit_price_in_cents) DESC")
+  #   .take(quantity)
+  # end
 
   def self.random
     all.shuffle.first

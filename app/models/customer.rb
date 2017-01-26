@@ -44,7 +44,7 @@ class Customer < ApplicationRecord
   def favorite_merchant
     merchants
     .select("merchants.*, count(invoices.id) as id_count")
-    .joins(invoices: :transactions)
+    .joins([invoices: :transactions])
     .group("merchants.id")    
     .order("id_count DESC")
     .first
