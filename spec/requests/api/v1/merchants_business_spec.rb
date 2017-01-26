@@ -12,8 +12,8 @@ RSpec.describe 'Merchants Business Intelligence' do
     transaction = create(:transaction, invoice: invoice, result: "success")
     transaction = create(:transaction, invoice: invoice_2, result: "success")
 
-    revenue_1 = ((invoice_item_1.quantity * invoice_item_1.unit_price) / 100.00)
-    revenue_2 = ((invoice_item_2.quantity * invoice_item_2.unit_price) / 100.00)
+    revenue_1 = (invoice_item_1.quantity * invoice_item_1.unit_price)
+    revenue_2 = (invoice_item_2.quantity * invoice_item_2.unit_price)
 
     revenue = (revenue_1 + revenue_2).to_s
 
@@ -39,10 +39,10 @@ RSpec.describe 'Merchants Business Intelligence' do
 
     get "/api/v1/merchants/#{merchant.id}/revenue"
 
-    data = JSON.parse(response.body)
+    result = JSON.parse(response.body)
 
     expect(response).to be_success
-    expect(data["revenue"]).to eq(revenue)
+    expect(result["revenue"]).to eq(revenue)
   end
 
   it 'can find top item sold' do
