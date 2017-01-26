@@ -48,6 +48,9 @@ class Item < ApplicationRecord
     end     
   end
 
+  def best_day
+  end
+  
   def self.random
     all.shuffle.first
   end
