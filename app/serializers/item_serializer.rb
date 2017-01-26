@@ -7,4 +7,8 @@ class ItemSerializer < ActiveModel::Serializer
     penny_to_dollar(object.unit_price).to_s
   end
 
+  def format_invoice
+    object.invoices.select(:id)
+  end
+
 end

@@ -106,7 +106,7 @@ RSpec.describe Merchant, type: :model do
     end
     it 'can return the top 1 merchants by revenue' do
       top_merchants = Merchant.top_x_by_revenue(1)
-byebug
+      
       expect(top_merchants.count).to eq(1)
     end
     xit 'can return the top 2 merchants by revenue' do
