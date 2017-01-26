@@ -38,9 +38,7 @@ RSpec.describe 'Merchants Business Intelligence' do
     revenue = ((invoice_item_1.quantity * invoice_item_1.unit_price)/ 100.00).to_s
 
     get "/api/v1/merchants/#{merchant.id}/revenue"
-
     result = JSON.parse(response.body)
-
     expect(response).to be_success
     expect(result["revenue"]).to eq(revenue)
   end
@@ -50,8 +48,8 @@ RSpec.describe 'Merchants Business Intelligence' do
     date = "2016-09-06 12:00:35"
     merchant = create(:merchant)
     item = create(:item)
-    invoice = create(:invoice, merchant: merchant)
-    invoice_2 = create(:invoice, merchant: merchant)
+    invoice = create(:invoice, merchant: merchant, created_at: date)
+    invoice_2 = create(:invoice, merchant: merchant, created_at: date)
     invoice_item_1 = create(:invoice_item, item: item, invoice: invoice, quantity: 10, unit_price: 50000)
     invoice_item_2 = create(:invoice_item, item: item, invoice: invoice_2, quantity: 5, unit_price: 10000)
     transaction = create(:transaction, invoice: invoice, result: "success")

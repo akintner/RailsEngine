@@ -38,19 +38,19 @@ class Merchant < ApplicationRecord
     all.shuffle.first
   end
 
-  def total_revenue
-    invoices
+  def total_revenue(date)
+    find_invoices(date)
     .joins(:transactions, :invoice_items)
     .merge(Transaction.successful)
     .sum("invoice_items.quantity * invoice_items.unit_price")
   end
 
-  def total_revenue_by_date(date)
-    invoices
-    .where(created_at: date)
-    .joins(:transactions, :invoice_items)
-    .merge(Transaction.successful)
-    .sum("invoice_items.quantity * invoice_items.unit_price")
+  def find_invoices(date)
+    if date
+      invoices.where(created_at: date)
+    else
+      invoices
+    end
   end
 
   def self.most_items_sold(quantity)

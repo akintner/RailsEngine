@@ -37,7 +37,6 @@ Rails.application.routes.draw do
      
       resources :merchants, only: [:index, :show] do
         get "/revenue" => "merchant_revenue#index"
-        get "/revenue?date" => "merchant_revenue#show"
         get '/items' => 'relationship_merchant_items#index'
         get '/invoices' => 'relationship_merchant_invoices#index'
       end
