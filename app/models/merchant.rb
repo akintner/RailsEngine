@@ -38,4 +38,28 @@ class Merchant < ApplicationRecord
     all.shuffle.first
   end
 
+  def total_revenue
+    invoices
+    .joins(:transactions, :invoice_items)
+    .merge(Transaction.successful)
+    .sum("invoice_items.quantity * invoice_items.unit_price")
+  end
+
+  def self.total_revenue_by_date(date)
+    invoices
+    .where(created_at: date)
+    .joins(:transactions, :invoice_items)
+    .merge(Transaction.successful)
+    .sum("invoice_items.quantity * invoice_items.unit_price")
+  end
+
+  def self.most_items_sold(quantity)
+    select("merchants.*, sum(invoice_items.quantity) as item_count")
+    .joins(invoices: [:invoice_items, :transactions])
+    .merge(Transaction.successful)
+    .order("item_count DESC")
+    .group("merchants.id")
+    .limit(quantity)
+  end
+
 end

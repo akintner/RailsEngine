@@ -49,8 +49,11 @@ class Item < ApplicationRecord
   end
 
   def best_day
+    invoice_items
+    .order("sum(invoice_items.quantity) DESC")
+    .first
   end
-  
+
   def self.random
     all.shuffle.first
   end

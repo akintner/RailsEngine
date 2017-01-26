@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       end
       resources :merchants, only: [:index, :show] do
         get "/revenue" => "merchant_revenue#index"
+        get "/revenue?date" => "merchant_revenue#show"
       end
       resources :customers, only: [:index, :show] do
         get "favorite_merchant" => "customer_favorites#index"
