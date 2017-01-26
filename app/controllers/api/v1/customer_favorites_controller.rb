@@ -1,5 +1,5 @@
-class Api::V1::CustomersFavoritesController < ApplicationController
-  def show
-    render json: Customer.find(params[:id]).favorite_merchant
+class Api::V1::CustomerFavoritesController < ApplicationController
+  def index
+    render json: Customer.find(params[:customer_id]).favorite_merchant
   end
 end
