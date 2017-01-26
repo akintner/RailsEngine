@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
 
+  default_scope {order("id")}
+
   def unit_price_dollar
     penny_to_dollar(unit_price)
   end
@@ -52,9 +54,12 @@ class Item < ApplicationRecord
     invoices
     .joins(:invoice_items)
     .group("invoices.id")
-    .group("created_at")
-    .order("sum(invoice_items.quantity) DESC")
+    .order("sum(invoice_items.quantity) DESC, invoices.created_at DESC")
     .first
+    .created_at
+  end
+
+  def most_items
   end
 
   def self.random
