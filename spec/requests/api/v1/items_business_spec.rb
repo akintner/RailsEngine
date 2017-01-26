@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Items Business Intelligence' do
-  xit 'can find best day of sales for an item' do
+  it 'can find best day of sales for an item' do
     #returns the date with the most sales for the given item using the invoice date. 
     #If there are multiple days with equal number of sales, return the most recent day.
     item = create(:item)
