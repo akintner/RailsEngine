@@ -45,6 +45,6 @@ class Invoice < ApplicationRecord
   end
 
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
   end
 end

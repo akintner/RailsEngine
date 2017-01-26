@@ -35,7 +35,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
   end
 
   def total_revenue
