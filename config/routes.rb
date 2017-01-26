@@ -40,7 +40,9 @@ Rails.application.routes.draw do
         get '/invoices' => 'relationship_customer_invoices#index'
         get '/transactions' => 'relationship_customer_transactions#index'
       end
-      resources :transactions, only: [:index, :show]
+      resources :transactions, only: [:index, :show] do
+        get '/invoice' => 'relationship_transaction_invoice#index'
+      end
       resources :invoices, only: [:index, :show] do 
         get "/transactions" => "relationships_invoice_transactions#index"
         get "/invoice_items" => "relationships_invoice_invoice_items#index"
