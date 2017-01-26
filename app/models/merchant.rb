@@ -38,6 +38,16 @@ class Merchant < ApplicationRecord
     order('RANDOM()').first
   end
 
+  def favorite_customer
+    customers
+    .select("customers.*, count(transactions.id) as transactions_count")
+    .joins(invoices: :transactions)
+    .merge(Transaction.successful)
+    .group("customers.id")
+    .order("transactions_count DESC")
+    .first
+  end
+
   def total_revenue(date)
     find_invoices(date)
     .joins(:transactions, :invoice_items)

@@ -94,4 +94,32 @@ RSpec.describe 'Merchants Business Intelligence' do
     expect(response).to be_success
   end
 
+  it 'can find favorite customer' do
+    #returns the customer who has conducted the most successful transactions
+    customer1 = create(:customer)
+    customer2 = create(:customer)
+    merchant = create(:merchant)
+    item = create(:item)
+
+    invoice_1 = create(:invoice, merchant: merchant, customer: customer1)
+    invoice_2 = create(:invoice, merchant: merchant, customer: customer1)
+    invoice_item_1 = create(:invoice_item, item: item, invoice: invoice_1, quantity: 7, unit_price: 30300)
+    invoice_item_2 = create(:invoice_item, item: item, invoice: invoice_2, quantity: 7, unit_price: 55000)
+    transaction = create(:transaction, invoice: invoice_1, result: "success")
+    transaction = create(:transaction, invoice: invoice_2, result: "success")
+
+    invoice_3 = create(:invoice, merchant: merchant, customer: customer2)
+    invoice_4 = create(:invoice, merchant: merchant, customer: customer2)
+    invoice_item_1 = create(:invoice_item, item: item, invoice: invoice_3, quantity: 7, unit_price: 11900)
+    invoice_item_2 = create(:invoice_item, item: item, invoice: invoice_4, quantity: 7, unit_price: 5500)
+    transaction = create(:transaction, invoice: invoice_3, result: "success")
+    transaction = create(:transaction, invoice: invoice_4, result: "failed")
+
+    get "/api/v1/merchants/#{merchant.id}/favorite_customer"
+
+    result = JSON.parse(response.body)
+
+    expect(response).to be_success
+    expect(result["id"]).to eq(customer1.id)
+  end
 end

@@ -16,7 +16,7 @@ RSpec.describe 'Items Business Intelligence' do
     expect(response).to be_success
   end
 
-  xit 'can find top item sold' do
+  xit 'can find top x item with most items sold' do
     #returns the top x item instances ranked by total number sold
     item = create(:item)
     invoice_1, invoice_2, invoice_3 = create_list(:invoice, 3)
