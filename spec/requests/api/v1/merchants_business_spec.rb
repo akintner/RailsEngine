@@ -85,4 +85,13 @@ RSpec.describe 'Merchants Business Intelligence' do
     expect(response).to be_success
     expect(merchants.first["id"]).to eq(merchant2.id)
   end
+
+  it 'can return top x number of merchants based on total revenue' do
+    get "/api/v1/merchants/most_revenue?quantity=2"
+
+    merchants = JSON.parse(response.body)
+
+    expect(response).to be_success
+  end
+
 end

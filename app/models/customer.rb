@@ -38,7 +38,7 @@ class Customer < ApplicationRecord
   end
    
   def self.random
-    all.shuffle.first
+    order('RANDOM()').first
   end
 
   def favorite_merchant
