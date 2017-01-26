@@ -16,7 +16,7 @@ RSpec.describe 'Items Business Intelligence' do
     expect(response).to be_success
   end
 
-  xit 'can find top x item with most items sold' do
+  xit 'can find top x items by most sold' do
     #returns the top x item instances ranked by total number sold
     item = create(:item)
     invoice_1, invoice_2, invoice_3 = create_list(:invoice, 3)
@@ -29,6 +29,25 @@ RSpec.describe 'Items Business Intelligence' do
     result = JSON.parse(response.body)
 
     expect(response).to be_success
-    expect(result).to eq(item)
+  end
+
+  it 'can find top x items by total revenue generated' do
+    # returns the top x items ranked by total revenue generated
+    item1 = create(:item)
+    item2 = create(:item)
+    invoice_1, invoice_2, invoice_3 = create_list(:invoice, 3)
+    invoice_items_1 = create(:invoice_item, item: item1, invoice: invoice_1, quantity: 3, unit_price: 99000)
+    invoice_items_2 = create(:invoice_item, item: item2, invoice: invoice_2, quantity: 17, unit_price: 1000)
+    invoice_items_3 = create(:invoice_item, item: item2, invoice: invoice_3, quantity: 17, unit_price: 1000)
+    transaction = create(:transaction, invoice: invoice_1, result: "success")
+    transaction = create(:transaction, invoice: invoice_2, result: "success")
+    transaction = create(:transaction, invoice: invoice_3, result: "success")
+
+    get "/api/v1/items/most_revenue?quantity=1"
+
+    result = JSON.parse(response.body)
+
+    expect(response).to be_success
+    expect(result.first["id"]).to eq(item1.id)
   end
 end
