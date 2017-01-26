@@ -86,7 +86,8 @@ def import_transactions_csv
   puts 'Starting Transaction CSV file import...'
   ActiveRecord::Base.connection.reset_pk_sequence!(:transactions)
   CSV.foreach('db/import_csv/transactions.csv', :headers=> true) do |row|
-    Transaction.create(credit_card_number: row['credit_card_number'],
+    Transaction.create(invoice_id: row['invoice_id'],
+                    credit_card_number: row['credit_card_number'],
                     result: row['result'],
                     created_at: row['created_at'],
                     updated_at: row['updated_at'])

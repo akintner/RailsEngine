@@ -1,7 +1,7 @@
 class InvoiceItemSerializer < ActiveModel::Serializer
   include ModelHelpers
 
-  attributes :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at
+  attributes :id, :quantity, :unit_price, :created_at, :updated_at
 
   belongs_to :item 
   belongs_to :invoice 
