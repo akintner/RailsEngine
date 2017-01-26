@@ -13,7 +13,6 @@ RSpec.describe "Merchants API" do
     expect(merchant).to be_a(Hash)
     expect(merchant).to have_key("id")
     expect(merchant).to have_key("name")
-    expect(merchant).to have_key("created_at")
     expect(merchant["name"]).to be_a(String)
     expect(merchant["id"]).to be_a(Integer)
   end
@@ -29,7 +28,6 @@ RSpec.describe "Merchants API" do
     expect(merchant).to have_key("id")
     expect(merchant['id']).to eq(test_merchants.first['id'])
     expect(merchant).to have_key("name")
-    expect(merchant).to have_key("created_at")
     expect(merchant["name"]).to be_a(String)
     expect(merchant["id"]).to be_a(Integer)
   end
