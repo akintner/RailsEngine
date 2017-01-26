@@ -64,4 +64,9 @@ RSpec.describe 'Merchants Business Intelligence' do
 
     expect(response).to be_success
   end
+
+  it 'can return top x number of merchants based on total revenue' do
+    
+  end
+
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         get "/find_all" => "find_all#index"
         get "/random" => "random#index"
         get "/most_items" => "merchants_items_business#index"
+        get '/most_revenue' => 'top_revenue_business#index'
       end
       namespace :transactions do 
         get "/find" => "find#index"

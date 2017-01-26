@@ -91,4 +91,28 @@ RSpec.describe Merchant, type: :model do
     end
 
   end
+
+  describe 'Business Intelligence' do
+    before do
+      @test_invoices = create_list(:invoice, 3)
+      @merchant_top1 = Merchant.first
+      @merchant_top2 = Merchant.last
+      @merchant_top1.invoices << [@test_invoices[0], @test_invoices[1]]
+      @merchant_top2.invoices << @test_invoices[2]
+      test_item = create(:item)
+      InvoiceItem.create(quantity: 1, unit_price: 1, item: test_item, invoice: @test_invoices[0])
+      InvoiceItem.create(quantity: 1, unit_price: 1, item: test_item, invoice: @test_invoices[1])
+      InvoiceItem.create(quantity: 1, unit_price: 1, item: test_item, invoice: @test_invoices[2])
+    end
+    it 'can return the top 1 merchants by revenue' do
+      top_merchants = Merchant.top_x_by_revenue(1)
+byebug
+      expect(top_merchants.count).to eq(1)
+    end
+    xit 'can return the top 2 merchants by revenue' do
+      top_merchants = Merchant.top_x_by_revenue(2)
+
+      expect(top_merchants.count).to eq(2)
+    end
+  end
 end
