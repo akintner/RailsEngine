@@ -122,5 +122,16 @@ RSpec.describe Merchant, type: :model do
       expect(top_merchants.first.id).to eq(@merchant_top1.id)
       expect(top_merchants.last.id).to eq(@merchant_top2.id)
     end
+    it 'can return the top 1 merchants by number of items sold' do
+      top_merchants = Merchant.most_items_sold(1)
+
+      expect(top_merchants.first.id).to eq(@merchant_top1.id)
+    end
+    it 'can return the top 2 merchants by number of items sold' do
+      top_merchants = Merchant.most_items_sold(2)
+
+      expect(top_merchants.first.id).to eq(@merchant_top1.id)
+      expect(top_merchants.last.id).to eq(@merchant_top2.id)
+    end
   end
 end

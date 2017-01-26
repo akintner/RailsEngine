@@ -1,5 +1,5 @@
 class Invoice < ApplicationRecord
-  default_scope { order('id ASC') }
+  # default_scope { order('id ASC') }
 
   belongs_to :merchant
   belongs_to :customer
