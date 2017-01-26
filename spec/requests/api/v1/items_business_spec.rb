@@ -16,19 +16,24 @@ RSpec.describe 'Items Business Intelligence' do
     expect(response).to be_success
   end
 
-  xit 'can find top x items by most sold' do
+  it 'can find top x items by most sold' do
     #returns the top x item instances ranked by total number sold
-    item = create(:item)
+    item1 = create(:item)
+    item2 = create(:item)
+    item3 = create(:item)
     invoice_1, invoice_2, invoice_3 = create_list(:invoice, 3)
-    create(:invoice_item, item: item, invoice: invoice_1, quantity: 7)
-    create(:invoice_item, item: item, invoice: invoice_2, quantity: 11)
-    create(:invoice_item, item: item, invoice: invoice_3, quantity: 9)
+    create(:invoice_item, item: item1, invoice: invoice_1, quantity: 7)
+    create(:invoice_item, item: item2, invoice: invoice_2, quantity: 11)
+    create(:invoice_item, item: item3, invoice: invoice_3, quantity: 9)
 
     get "/api/v1/items/most_items?quantity=3"
 
     result = JSON.parse(response.body)
 
     expect(response).to be_success
+    expect(result).to have_key("item1")
+    expect(result).to have_key("item2")
+    expect(result).to have_key("item3")
   end
 
   it 'can find top x items by total revenue generated' do
