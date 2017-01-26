@@ -20,8 +20,6 @@ RSpec.describe 'Invoices API Find_All Controller' do
     expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
     expect(invoice['status']).to be_a(String)
-    expect(invoice).to have_key('created_at')
-    expect(invoice).to have_key('updated_at')
   end
 
   it 'can find an invoice by customer id' do
@@ -45,8 +43,6 @@ RSpec.describe 'Invoices API Find_All Controller' do
     expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
     expect(invoice['status']).to be_a(String)
-    expect(invoice).to have_key('created_at')
-    expect(invoice).to have_key('updated_at')
   end
 
   it 'can find an invoice by merchant id' do
@@ -70,8 +66,6 @@ RSpec.describe 'Invoices API Find_All Controller' do
     expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
     expect(invoice['status']).to be_a(String)
-    expect(invoice).to have_key('created_at')
-    expect(invoice).to have_key('updated_at')
   end
 
   it 'can find an invoice by status' do
@@ -95,8 +89,6 @@ RSpec.describe 'Invoices API Find_All Controller' do
     expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
     expect(invoice['status']).to be_a(String)
-    expect(invoice).to have_key('created_at')
-    expect(invoice).to have_key('updated_at')
   end
 
   it 'can find an invoice by created at date' do
@@ -117,8 +109,6 @@ RSpec.describe 'Invoices API Find_All Controller' do
     expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
     expect(invoice['status']).to be_a(String)
-    expect(invoice).to have_key('created_at')
-    expect(invoice).to have_key('updated_at')
   end
 
   it 'can find an invoice by updated at date' do
@@ -139,8 +129,6 @@ RSpec.describe 'Invoices API Find_All Controller' do
     expect(invoice['merchant_id']).to be_a(Integer)
     expect(invoice).to have_key('status')
     expect(invoice['status']).to be_a(String)
-    expect(invoice).to have_key('created_at')
-    expect(invoice).to have_key('updated_at')
   end
 
 end
