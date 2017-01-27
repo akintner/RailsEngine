@@ -35,12 +35,14 @@ Rails.application.routes.draw do
         get "/find_all" => "find_all#index"
         get "/random" => "random#index"
         get "/most_items" => "items_most#index"
+        get "/most_revenue" => "items_most_revenue#index"
       end
      
       resources :merchants, only: [:index, :show] do
         get "/revenue" => "merchant_revenue#index"
         get '/items' => 'relationship_merchant_items#index'
         get '/invoices' => 'relationship_merchant_invoices#index'
+        get '/favorite_customer' => 'merchant_favorites#index'
       end
       resources :customers, only: [:index, :show] do
         get '/invoices' => 'relationship_customer_invoices#index'
