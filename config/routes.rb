@@ -34,8 +34,8 @@ Rails.application.routes.draw do
         get "/find" => "find#index"
         get "/find_all" => "find_all#index"
         get "/random" => "random#index"
-        get "/most_items" => "items_most#index"
-        get "/most_revenue" => "items_most_revenue#index"
+        get "/most_items" => "most_items#index"
+        get "/most_revenue" => "most_revenue#index"
       end
      
       resources :merchants, only: [:index, :show] do
