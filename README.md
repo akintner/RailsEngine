@@ -51,23 +51,29 @@ DO NOT change any code in the schema.rb file. This will cause the entire program
 `localhost:3000//api/v1/merchants/most_revenue?quantity=x`  
 
 ####Relationship Endpoints Between Tables in the Database
+<br>
 Merchants  
 `localhost:3000/api/v1/merchants/:id/items` returns a collection of items associated with that merchant  
-`localhost:3000/api/v1/merchants/:id/invoices` returns a collection of invoices associated with that merchant from their known orders  
+`localhost:3000/api/v1/merchants/:id/invoices` returns a collection of invoices associated with that merchant from their known orders
+<br>
 Invoices  
 `localhost:3000/api/v1/invoices/:id/transactions` returns a collection of associated transactions  
 `localhost:3000/api/v1/invoices/:id/invoice_items` returns a collection of associated invoice items  
 `localhost:3000/api/v1/invoices/:id/items` returns a collection of associated items  
 `localhost:3000/api/v1/invoices/:id/customer` returns the associated customer  
 `localhost:3000/api/v1/invoices/:id/merchant` returns the associated merchant  
+<br>
 Invoice Items  
 `localhost:3000/api/v1/invoice_items/:id/invoice` returns the associated invoice  
-`localhost:3000/api/v1/invoice_items/:id/item` returns the associated item  
+`localhost:3000/api/v1/invoice_items/:id/item` returns the associated item
+<br>
 Items  
 `localhost:3000/api/v1/items/:id/invoice_items` returns a collection of associated invoice items  
 `localhost:3000/api/v1/items/:id/merchant` returns the associated merchant  
+<br>
 Transactions  
 `localhost:3000/api/v1/transactions/:id/invoice` returns the associated invoice  
+<br>
 Customers  
 `localhost:3000/api/v1/customers/:id/invoices` returns a collection of associated invoices  
 `localhost:3000/api/v1/customers/:id/transactions` returns a collection of associated transactions  
