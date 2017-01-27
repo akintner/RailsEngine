@@ -11,14 +11,15 @@
 * General Configuration: clone down this repo, `bundle` to ensure all the Gemfile dependencies are loaded on your local computer, and then you will need to load, migrate, and seed the database with the CSV files.
 
 * Database Configuration: once you have cloned the repo and bundled for gems, you will have to set up the database on your local machine. To do this, please run the following commands from your terminal in order:
-rake db:create (this will create the two postgresql databases needed to run the project)
-rake db:migrate (this will load all the database tables with the information specified in the migration files)
-rake db:test:prepare (this will ensure that you can run the test specs)
-rake db:import_csvs (this will load all of the info from the CSV files into the database)
+<br>
+rake db:create (this will create the two postgresql databases needed to run the project)  
+rake db:migrate (this will load all the database tables with the information specified in the migration files)  
+rake db:test:prepare (this will ensure that you can run the test specs)  
+rake db:import_csvs (this will load all of the info from the CSV files into the database)  
 
 * How to run the test suite: once you have set up the database, you can run the test specs by simply typing `rspec` into the terminal. 
 
-* How to run the test harness: there is a detailed spec harness for this project. It can be cloned down from here: https://github.com/turingschool/rales_engine_spec_harness. Directions to properly install the harness are listed in the readme for that repo. Once you have it installed, simple `cd` into the folder and run `rake` from the terminal.
+* How to run the test harness: there is a detailed spec harness for this project. It can be cloned down from here: https://github.com/turingschool/rales_engine_spec_harness. Directions to properly install the harness are listed in the readme for that repo. Once you have it installed, simply `cd` into the folder and run `rake` from the terminal.
 
 * How to run the program from your local browser: if you would like to run the program from your browser to see how the API is returning JSON objects, please type `puma` or `rails server` into the terminal and then open up a browser of your choice and type in the following basic URL `localhost:3000/api/v1/merchants`, and the word merchants in the URL can be substituted with any of the files from the database tables (merchants, customers, items, invoices, invoice_items, transactions) to access the main directory for each of those collections in the database. The following extra paths are also available: 
 
