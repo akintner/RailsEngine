@@ -59,40 +59,147 @@ RSpec.describe Customer, type: :model do
   end
   
   describe 'methods' do
-    it 'can find the first match based on any attribute' do
-      test_customers = create_list(:customer, 3)
-      test_params = {"first_name" => "Prof. Severus"}
+    describe 'can find the first match based on any attribute' do
+      describe 'first_name' do
+        it 'can find with case sensitive search' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"first_name" => "Prof. Severus"}
 
-      find_customer = Customer.find_by_params(test_params)
+          find_customer = Customer.find_by_params(test_params)
 
-      expect(find_customer.id).to eq(test_customers.first.id)
-    end
+          expect(find_customer.id).to eq(test_customers.first.id)
+        end
+        it 'can find with NON case sensitive search' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"first_name" => "prof. severus"}
 
-    it 'can find all matches based on any attribute' do
-      test_customers = create_list(:customer, 3)
-      test_customers[0].update(last_name: 'Snape')
-      test_customers[1].update(last_name: 'SomethingElse')
-      test_customers[2].update(last_name: 'Snape')
-      test_params = {"last_name" => "Snape"}
+          find_customer = Customer.find_by_params(test_params)
 
-      find_customers = Customer.where_by_params(test_params)
+          expect(find_customer.id).to eq(test_customers.first.id)
+        end
+      end
+      describe 'last_name' do
+        it 'can find with case sensitive search' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"last_name" => "Snape"}
 
-      expect(find_customers.count).to eq(2)
-    end
+          find_customer = Customer.find_by_params(test_params)
 
-    it 'can return a random customer' do
-      create_list(:customer, 100)
+          expect(find_customer.id).to eq(test_customers.first.id)
+        end
+        it 'can find with NON case sensitive search' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"last_name" => "snape"}
 
-      random_customer1 = Customer.random
-      random_customer2 = Customer.random
+          find_customer = Customer.find_by_params(test_params)
 
-      retry_count = 0
-      while random_customer1.id.eql?(random_customer2.id) && retry_count < 5
-        retry_count =+ 1
-        random_customer2 = Customer.random
+          expect(find_customer.id).to eq(test_customers.first.id)
+        end
+      end
+      describe 'dates' do
+        it 'can find based on created_at' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"created_at" => "2017-01-23 23:36:38"}
+
+          find_customer = Customer.find_by_params(test_params)
+
+          expect(find_customer.id).to eq(test_customers.first.id)
+        end
+        it 'can find based on updated_at' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"updated_at" => "2017-01-23 23:36:38"}
+
+          find_customer = Customer.find_by_params(test_params)
+
+          expect(find_customer.id).to eq(test_customers.first.id)
+        end
       end
 
-      expect(random_customer1.id.eql?(random_customer2.id)).to be_falsy
+    end
+
+    describe 'find all matches based on any attribute' do
+        before do
+          test_customers = create_list(:customer, 3)
+          test_customers[0].update(first_name: 'First')
+          test_customers[1].update(first_name: 'SomethingElse')
+          test_customers[2].update(first_name: 'First')
+          test_customers[0].update(last_name: 'Last')
+          test_customers[1].update(last_name: 'SomethingElse')
+          test_customers[2].update(last_name: 'Last')
+        end
+      describe 'first_name' do
+
+        it 'can find with case sensitive search' do
+          test_params = {"first_name" => "First"}
+
+          find_customers = Customer.where_by_params(test_params)
+
+          expect(find_customers.count).to eq(2)
+        end
+
+        it 'can find with NON case sensitive search' do
+          test_params = {"first_name" => "first"}
+
+          find_customers = Customer.where_by_params(test_params)
+
+          expect(find_customers.count).to eq(2)
+        end
+      describe 'dates' do
+        it 'can find based on created_at' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"created_at" => "2017-01-23 23:36:38"}
+
+          find_customers = Customer.where_by_params(test_params)
+
+          expect(find_customers.count).to eq(Customer.count)
+        end
+        it 'can find based on updated_at' do
+          test_customers = create_list(:customer, 3)
+          test_params = {"updated_at" => "2017-01-23 23:36:38"}
+
+          find_customers = Customer.where_by_params(test_params)
+
+          expect(find_customers.count).to eq(3)
+        end
+      end
+    end
+
+      describe 'last_name' do
+
+        it 'can find with case sensitive search' do
+          test_params = {"last_name" => "Last"}
+
+          find_customers = Customer.where_by_params(test_params)
+
+          expect(find_customers.count).to eq(2)
+        end
+
+        it 'can find with NON case sensitive search' do
+          test_params = {"last_name" => "last"}
+
+          find_customers = Customer.where_by_params(test_params)
+
+          expect(find_customers.count).to eq(2)
+        end
+      end
+
+    end
+
+    describe 'Random' do
+      it 'can return a random customer' do
+        create_list(:customer, 100)
+
+        random_customer1 = Customer.random
+        random_customer2 = Customer.random
+
+        retry_count = 0
+        while random_customer1.id.eql?(random_customer2.id) && retry_count < 5
+          retry_count =+ 1
+          random_customer2 = Customer.random
+        end
+
+        expect(random_customer1.id.eql?(random_customer2.id)).to be_falsy
+      end
     end
 
   end
