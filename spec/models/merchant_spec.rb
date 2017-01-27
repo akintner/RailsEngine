@@ -54,25 +54,61 @@ RSpec.describe Merchant, type: :model do
   end
   
   describe 'methods' do
-    it 'can find the first match based on any attribute' do
-      test_merchants = create_list(:merchant, 3)
-      test_params = {"name" => "Hogwarts Express Railways"}
+    describe 'can find the first match based on any attribute' do
+      before do
+        test_merchants = create_list(:merchant, 3)
+      end
+      it 'can find based on name' do
+        test_params = {"name" => "Hogwarts Express Railways"}
 
-      find_merchant = Merchant.find_by_params(test_params)
+        find_merchant = Merchant.find_by_params(test_params)
 
-      expect(find_merchant.id).to eq(test_merchants.first.id)
+        expect(find_merchant.id).to eq(Merchant.first.id)
+      end
+      it 'can find based on created_at' do
+        test_params = {"created_at" => "2017-01-23 23:54:17"}
+
+        find_merchant = Merchant.find_by_params(test_params)
+
+        expect(find_merchant.id).to eq(Merchant.first.id)
+      end
+      it 'can find based on updated_at' do
+        test_params = {"updated_at" => "2017-01-23 23:54:17"}
+
+        find_merchant = Merchant.find_by_params(test_params)
+
+        expect(find_merchant.id).to eq(Merchant.first.id)
+      end
     end
 
-    it 'can find all matches based on any attribute' do
-      test_merchants = create_list(:merchant, 3)
-      test_merchants[0].update(name: 'Hogwarts Express Railways')
-      test_merchants[1].update(name: 'SomethingElse')
-      test_merchants[2].update(name: 'Hogwarts Express Railways')
-      test_params = {"name" => "Hogwarts Express Railways"}
+    describe 'can find all matches based on any attribute' do
+      before do
+        test_merchants = create_list(:merchant, 3)
+        test_merchants[0].update(name: 'Hogwarts Express Railways')
+        test_merchants[1].update(name: 'SomethingElse')
+        test_merchants[2].update(name: 'Hogwarts Express Railways')
+      end
+      it 'can find based on name' do
+        test_params = {"name" => "Hogwarts Express Railways"}
 
-      find_merchants = Merchant.where_by_params(test_params)
+        find_merchants = Merchant.where_by_params(test_params)
 
-      expect(find_merchants.count).to eq(2)
+        expect(find_merchants.count).to eq(2)
+      end
+      it 'can find based on created_at' do
+        test_params = {"created_at" => "2017-01-23 23:54:17"}
+
+        find_merchants = Merchant.where_by_params(test_params)
+
+        expect(find_merchants.count).to eq(3)
+      end
+      it 'can find based on updated_at' do
+        test_params = {"updated_at" => "2017-01-23 23:54:17"}
+
+        find_merchants = Merchant.where_by_params(test_params)
+
+        expect(find_merchants.count).to eq(2)
+      end
     end
 
     it 'can return a random merchant' do

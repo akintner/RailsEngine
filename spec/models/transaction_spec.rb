@@ -18,26 +18,64 @@ RSpec.describe Transaction, type: :model do
   end
   
   describe 'methods' do
-    it 'can find the first match based on any attribute' do
-      test_transactions = create_list(:transaction, 3)
-      test_params = {"result" => "success"}
+    describe 'find the first match based on any attribute' do
+      before do
+        test_transactions = create_list(:transaction, 3)
+      end
+      it 'can find based on result' do
+        test_params = {"result" => "success"}
 
-      find_transaction = Transaction.find_by_params(test_params)
+        find_transaction = Transaction.find_by_params(test_params)
 
-      expect(find_transaction.id).to eq(test_transactions.first.id)
+        expect(find_transaction.id).to eq(Transaction.first.id)
+      end
+      it 'can find based on created_at' do
+        test_params = {"created_at" => "2017-01-23 23:54:17"}
+
+        find_transaction = Transaction.find_by_params(test_params)
+
+        expect(find_transaction.id).to eq(Transaction.first.id)
+      end
+      it 'can find based on updated_at' do
+        test_params = {"updated_at" => "2017-01-23 23:54:17"}
+
+        find_transaction = Transaction.find_by_params(test_params)
+
+        expect(find_transaction.id).to eq(Transaction.first.id)
+      end
     end
 
-    it 'can find all matches based on any attribute' do
-      test_transactions = create_list(:transaction, 3)
-      test_transactions[0].update(result: 'success')
-      test_transactions[1].update(result: 'SomethingElse')
-      test_transactions[2].update(result: 'success')
-      test_params = {"result" => "success"}
 
-      find_transactions = Transaction.where_by_params(test_params)
+    describe 'can find all matches based on any attribute' do
+      before do
+        test_transactions = create_list(:transaction, 3)
+        test_transactions[0].update(result: 'success')
+        test_transactions[1].update(result: 'SomethingElse')
+        test_transactions[2].update(result: 'success')
+      end
+      it 'can find based on result' do
+        test_params = {"result" => "success"}
 
-      expect(find_transactions.count).to eq(2)
+        find_transactions = Transaction.where_by_params(test_params)
+
+        expect(find_transactions.count).to eq(2)
+      end
+      it 'can find based on created_at' do
+        test_params = {"created_at" => "2017-01-23 23:54:17"}
+
+        find_transactions = Transaction.where_by_params(test_params)
+
+        expect(find_transactions.count).to eq(3)
+      end
+      it 'can find based on updated_at' do
+        test_params = {"updated_at" => "2017-01-23 23:54:17"}
+
+        find_transactions = Transaction.where_by_params(test_params)
+
+        expect(find_transactions.count).to eq(2)
+      end
     end
+
 
     it 'can return a random transaction' do
       create_list(:transaction, 100)
