@@ -6,7 +6,6 @@ module ModelHelpers
   end
 
   def dollar_to_penny(input)
-    # return input.to_i unless has_decimal?
     (input.to_f * PENNIES_PER_DOLLAR).round(2).to_i
   end
 
