@@ -94,6 +94,14 @@ RSpec.describe 'Merchants Business Intelligence' do
     expect(response).to be_success
   end
 
+  it 'can return total revenue of all merchants for a given date' do
+    get "/api/v1/merchants/revenue?date=20140101"
+
+    revenue = JSON.parse(response.body)
+
+    expect(response).to be_success
+  end
+
   it 'can find favorite customer' do
     #returns the customer who has conducted the most successful transactions
     customer1 = create(:customer)
