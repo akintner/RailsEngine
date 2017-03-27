@@ -23,7 +23,7 @@ rake db:import_csvs (this will load all of the info from the CSV files into the 
 
 * How to run the program from your local browser: if you would like to run the program from your browser to see how the API is returning JSON objects, please type `puma` or `rails server` into the terminal and then open up a browser of your choice and type in the following basic URL `localhost:3000/api/v1/merchants`, and the word merchants in the URL can be substituted with any of the files from the database tables (merchants, customers, items, invoices, invoice_items, transactions) to access the main directory for each of those collections in the database. The following extra paths are also available: 
 
-####Database Table Endpoints
+#### Database Table Endpoints
 Each table in the database has a `find`, `find_all`, and a `random` path, which can be accessed from the URL like this:  
 `localhost:3000/api/v1/merchants/find?name=grocery`  
 `localhost:3000/api/v1/merchants/find_all?name=store`  
@@ -38,7 +38,7 @@ where the parameter following = can be whatever you wish to search for. If the p
 where all of the t.___ lines indicate what the datatypes are, and the "unit_price" and such indicate the name of the column heading.
 DO NOT change any code in the schema.rb file. This will cause the entire program to fail. 
 
-####Business Intelligence Endpoints  
+#### Business Intelligence Endpoints  
 `localhost:3000//api/v1/merchants/:id/revenue`  
 `localhost:3000//api/v1/merchants/:id/revenue?date=x`  
 `localhost:3000//api/v1/merchants/most_items?quantity=x`  
@@ -51,7 +51,7 @@ DO NOT change any code in the schema.rb file. This will cause the entire program
 `localhost:3000//api/v1/merchants/revenue?date=x`  
 `localhost:3000//api/v1/merchants/most_revenue?quantity=x`  
 
-####Relationship Endpoints Between Tables in the Database
+#### Relationship Endpoints Between Tables in the Database
 <br>
 Merchants  
 `localhost:3000/api/v1/merchants/:id/items` returns a collection of items associated with that merchant  
