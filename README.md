@@ -1,7 +1,7 @@
 # README
 
-###This implementation is based on project description:  
-###http://backend.turing.io/module3/projects/rails_engine
+### This implementation is based on project description:  
+### http://backend.turing.io/module3/projects/rails_engine
 
 
 * Rails version: 5.0.1
